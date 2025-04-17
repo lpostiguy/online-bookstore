@@ -10,7 +10,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="text-bold text-blue-800">
       <h1>Users</h1>
       {users.map((user) => (
         <p key={user.id}>
