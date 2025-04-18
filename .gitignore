@@ -33,5 +33,9 @@ prisma/*.sqlite
 # Test coverage
 coverage/
 
-# TypeScript
+# TypeScript cache
 *.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+

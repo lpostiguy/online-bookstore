@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import arrowSvg from "../../assets/svg/arrow.svg";
-import { Link } from "react-router-dom";
 
 export const EmpruntsSection: React.FC = () => {
   const [emprunts, setEmprunts] = useState<any[]>([]);
