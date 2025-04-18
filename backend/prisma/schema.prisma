@@ -9,60 +9,13 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model Livre {
-  idLivre    Int        @id @default(autoincrement())
-  titre      String
-  genre      String
-  auteur     String
-  emprunts   Emprunt[]
-  commandes  Commande[]
-
-  @@map("Livre")
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
 }
 
-model Adherent {
-  idAdherent Int        @id @default(autoincrement())
-  nom        String
-  rue        String
-  no         String
-  ville      String
-  cPost      String     @db.Char(6)
-  emprunts   Emprunt[]
-  commandes  Commande[]
-
-  @@map("Adherent")
-}
-
-model Emprunt {
-  idEmprunt   Int        @id @default(autoincrement())
-  idLivre     Int
-  idAdherent  Int
-  dateEmprunt DateTime   @map("dateEmprunt") @db.Date
-  dateRetour  DateTime?  @map("dateRetour")  @db.Date
-
-  livre       Livre      @relation(fields: [idLivre], references: [idLivre])
-  adherent    Adherent   @relation(fields: [idAdherent], references: [idAdherent])
-
-  @@index([idLivre],    name: "idx_emprunte_livre")
-  @@index([idAdherent], name: "idx_emprunte_adh")
-  @@map("Emprunt")
-}
-
-model Commande {
-  idCommande   Int        @id @default(autoincrement())
-  idLivre      Int
-  idAdherent   Int
-  dateCommande DateTime   @map("dateCommande") @db.Date
-  etatCommande String
-
-  livre        Livre      @relation(fields: [idLivre], references: [idLivre])
-  adherent     Adherent   @relation(fields: [idAdherent], references: [idAdherent])
-
-  @@index([idLivre],    name: "idx_commande_livre")
-  @@index([idAdherent], name: "idx_commande_adh")
-  @@map("Commande")
-}
