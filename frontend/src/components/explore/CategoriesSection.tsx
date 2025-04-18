@@ -1,0 +1,95 @@
+import React, { useState } from "react";
+
+export const CategoriesSection: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
+
+  return (
+    <div className="rounded-xl w-full bg-slate-100 shadow-md h-auto p-4 space-y-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Catégories</h2>
+      </div>
+      <div className="space-x-5 space-y-3">
+        <button
+          className={`${
+            selectedCategory === "Tous"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Tous")}
+        >
+          <span>Tous</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Fiction"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Fiction")}
+        >
+          <span>Fiction</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Romance"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Romance")}
+        >
+          <span>Romance</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Biographies"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Biographies")}
+        >
+          <span>Biographies</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Poésie"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Poésie")}
+        >
+          <span>Poésie</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Bandes dessinées"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Bandes dessinées")}
+        >
+          <span>Bandes dessinées</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Cuisine"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Cuisine")}
+        >
+          <span>Cuisine</span>
+        </button>
+        <button
+          className={`${
+            selectedCategory === "Histoire"
+              ? "bg-[#8e80d9] text-slate-100"
+              : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
+          } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
+          onClick={() => setSelectedCategory("Histoire")}
+        >
+          <span>Histoire</span>
+        </button>
+      </div>
+    </div>
+  );
+};
