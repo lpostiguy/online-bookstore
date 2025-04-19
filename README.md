@@ -87,7 +87,9 @@ chmod +x setup.sh
 ```
 projet-fullstack/
 ├── backend/
+|   ├── node_modules
 │   ├── src/
+|       └── index.ts
 │   ├── prisma/
 │   ├── .env.example
 │   └── package.json
