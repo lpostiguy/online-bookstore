@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,9 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+model Livre {
+  idLivre    Int        @id @default(autoincrement())
+  titre      String
+  genre      String
+  auteur     String
+  emprunts   Emprunt[]
+  commandes  Commande[]
 }
 
+model Adherent {
+  idAdherent Int        @id @default(autoincrement())
+  nom        String
+  rue        String
+  no         String
+  ville      String
+  cPost      String
+  emprunts   Emprunt[]
+  commandes  Commande[]
+}
+
+model Emprunt {
+  idEmprunt   Int        @id @default(autoincrement())
+  idLivre     Int
+  idAdherent  Int
+  dateEmprunt DateTime
+  dateRetour  DateTime?
+
+  livre       Livre      @relation(fields: [idLivre],   references: [idLivre])
+  adherent    Adherent   @relation(fields: [idAdherent],references: [idAdherent])
+
+  @@index([idLivre],    name: "idx_emprunte_livre")
+  @@index([idAdherent], name: "idx_emprunte_adh")
+}
+
+model Commande {
+  idCommande   Int        @id @default(autoincrement())
+  idLivre      Int
+  idAdherent   Int
+  dateCommande DateTime
+  etatCommande String
+
+  livre        Livre      @relation(fields: [idLivre],   references: [idLivre])
+  adherent     Adherent   @relation(fields: [idAdherent],references: [idAdherent])
+
+  @@index([idLivre],    name: "idx_commande_livre")
+  @@index([idAdherent], name: "idx_commande_adh")
+}
