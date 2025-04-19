@@ -6,8 +6,6 @@ Ce projet est une application fullstack avec :
 - 🔙 Backend : Express.js + TypeScript
 - 🗄️ Base de données : SQLite avec Prisma ORM
 
-Le but est d’avoir un projet simple à cloner et exécuter localement, sans installer de base de données externe.
-
 ---
 
 ## 🛠️ Prérequis
@@ -94,6 +92,7 @@ projet-fullstack/
 │   ├── .env.example
 │   └── package.json
 ├── frontend/
+├── ├── src/
 │   └── package.json
 ├── setup.sh
 ├── setup.bat
