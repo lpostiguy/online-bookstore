@@ -1,0 +1,19 @@
+import React, { useEffect, useState } from "react";
+
+export const CommandesSection: React.FC = () => {
+  const [commandes, setCommandes] = useState<any[]>([]);
+
+  useEffect(() => {
+    //  fetch("http://localhost:3001/api/users")
+    //    .then((res) => res.json())
+    //    .then((data) => setCommandes(data));
+  }, []);
+
+  return (
+    <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Mes commandes</h2>
+      </div>
+    </div>
+  );
+};

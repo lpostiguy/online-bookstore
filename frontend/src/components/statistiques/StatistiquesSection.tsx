@@ -10,7 +10,7 @@ export const StatistiquesSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="rounded-xl w-4/5 bg-slate-100 shadow-md h-1/2 p-6">
+    <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <h2 className="text-2xl font-bold">Statistiques</h2>
     </div>
   );
