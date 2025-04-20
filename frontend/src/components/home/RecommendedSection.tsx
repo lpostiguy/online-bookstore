@@ -6,9 +6,9 @@ export const RecommendedSection: React.FC = () => {
   const [books, setBooks] = useState<any[]>([]);
 
   useEffect(() => {
-    //  fetch("http://localhost:3001/api/users")
-    //    .then((res) => res.json())
-    //    .then((data) => setBooks(data));
+      fetch("http://localhost:3001/api/livres")
+        .then((res) => res.json())
+        .then((data) => setBooks(data));
   }, []);
 
   return (
