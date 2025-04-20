@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-export const CategoriesSection: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
+interface Props {
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+}
 
+export const CategoriesSection: React.FC<Props> = ({
+  selectedCategory,
+  setSelectedCategory,
+}) => {
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-auto p-4 space-y-4">
       <div className="flex justify-between items-center">

@@ -33,6 +33,7 @@ cd backend
 npm install
 cp .env.example .env
 npx prisma migrate dev --name init
+npx prisma db seed
 
 cd ../frontend
 npm install
@@ -87,7 +88,9 @@ chmod +x setup.sh
 ```
 projet-fullstack/
 ├── backend/
+|   ├── node_modules
 │   ├── src/
+|       └── index.ts
 │   ├── prisma/
 │   ├── .env.example
 │   └── package.json
