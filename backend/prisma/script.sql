@@ -38,7 +38,7 @@ END;
 
 
 CREATE TABLE Commande (
-    idComande   INTEGER          PRIMARY KEY ,
+    idCommande   INTEGER          PRIMARY KEY ,
     idLivre     INTEGER         NOT NULL REFERENCES Livre(idLivre) ,
     idAdherent  INTEGER         NOT NULL REFERENCES Adherent(idAdherent),
     dateCommande DATE           NOT NULL ,
