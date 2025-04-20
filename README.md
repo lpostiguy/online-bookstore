@@ -6,8 +6,6 @@ Ce projet est une application fullstack avec :
 - 🔙 Backend : Express.js + TypeScript
 - 🗄️ Base de données : SQLite avec Prisma ORM
 
-Le but est d’avoir un projet simple à cloner et exécuter localement, sans installer de base de données externe.
-
 ---
 
 ## 🛠️ Prérequis
@@ -35,6 +33,7 @@ cd backend
 npm install
 cp .env.example .env
 npx prisma migrate dev --name init
+npx prisma db seed
 
 cd ../frontend
 npm install
@@ -89,11 +88,14 @@ chmod +x setup.sh
 ```
 projet-fullstack/
 ├── backend/
+|   ├── node_modules
 │   ├── src/
+|       └── index.ts
 │   ├── prisma/
 │   ├── .env.example
 │   └── package.json
 ├── frontend/
+├── ├── src/
 │   └── package.json
 ├── setup.sh
 ├── setup.bat
