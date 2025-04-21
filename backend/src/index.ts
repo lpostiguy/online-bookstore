@@ -42,14 +42,19 @@ app.get('/mes-commandes', async (req, res) => {
 // POST { userId: number, livreId: number }
 app.post('/emprunts', async (req, res) => {
   const { userId, livreId } = req.body;
+
+  const now    = new Date();
+  const retour = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+
   const emprunt = await prisma.emprunt.create({
     data: {
-      idAdherent: userId,
-      idLivre: livreId,
-      dateEmprunt: new Date(),
-      // dateRetour est calculée par le trigger ou reste null
+      idAdherent:  userId,
+      idLivre:     livreId,
+      dateEmprunt: now,
+      dateRetour:  retour,
     }
   });
+
   res.status(201).json(emprunt);
 });
 
