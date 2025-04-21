@@ -116,22 +116,6 @@ async function main() {
       { idLivre: 12, idAdherent: 2, dateCommande: new Date('2025-03-31'), etatCommande: 'en attente' },
     ],
   });
-
-  // at the bottom of prisma/seed.ts, before disconnect():
-  await prisma.$executeRawUnsafe(`
-    DROP TRIGGER IF EXISTS trg_date_retour;
-    CREATE TRIGGER trg_date_retour
-      AFTER INSERT ON Emprunt
-      FOR EACH ROW
-      WHEN NEW.dateRetour IS NULL
-    BEGIN
-      UPDATE Emprunt
-      SET dateRetour = date(NEW.dateEmprunt, '+14 days')
-      WHERE rowid = NEW.rowid;
-    END;
-  `);
-
-  console.log('✅ Seed and trigger installed.');
 }
 
 main()

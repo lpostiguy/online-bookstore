@@ -22,21 +22,6 @@ CREATE TABLE Emprunt (
     dateRetour  DATE
 );
 
--- un trigger SQLite avant chaque INSERT sur Emprunt
-DROP TRIGGER IF EXISTS trg_date_retour;
-
-CREATE TRIGGER trg_date_retour
-AFTER INSERT ON Emprunt
-FOR EACH ROW
-WHEN NEW.dateRetour IS NULL
-BEGIN
-  -- date() est la fonction SQLite pour manipuler les dates
-  UPDATE Emprunt
-  SET dateRetour = date(NEW.dateEmprunt, '+14 days')
-  WHERE rowid = NEW.rowid;
-END;
-
-
 CREATE TABLE Commande (
     idCommande   INTEGER          PRIMARY KEY ,
     idLivre     INTEGER         NOT NULL REFERENCES Livre(idLivre) ,
