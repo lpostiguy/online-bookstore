@@ -84,38 +84,77 @@ async function main() {
   // 3) seed Emprunt
   await prisma.emprunt.createMany({
     data: [
-      { idLivre: 1, idAdherent: 1, dateEmprunt: new Date('2025-01-01'), dateRetour: new Date('2025-01-15') },
-      { idLivre: 2, idAdherent: 1, dateEmprunt: new Date('2025-01-10'), dateRetour: new Date('2025-01-24') },
-      { idLivre: 3, idAdherent: 1, dateEmprunt: new Date('2025-02-05'), dateRetour: new Date('2025-02-19') },
-      { idLivre: 4, idAdherent: 2, dateEmprunt: new Date('2025-01-05'), dateRetour: new Date('2025-01-19') },
-      { idLivre: 5, idAdherent: 2, dateEmprunt: new Date('2025-02-01'), dateRetour: new Date('2025-02-15') },
-      { idLivre: 6, idAdherent: 2, dateEmprunt: new Date('2025-02-10'), dateRetour: new Date('2025-02-24') },
-      { idLivre: 7, idAdherent: 2, dateEmprunt: new Date('2025-03-01'), dateRetour: new Date('2025-03-15') },
-      { idLivre: 8, idAdherent: 3, dateEmprunt: new Date('2025-03-05'), dateRetour: new Date('2025-03-19') },
-      { idLivre: 9, idAdherent: 4, dateEmprunt: new Date('2025-03-10'), dateRetour: new Date('2025-03-24') },
-      { idLivre: 10, idAdherent: 5, dateEmprunt: new Date('2025-02-15'), dateRetour: new Date('2025-03-01') },
-      { idLivre: 11, idAdherent: 6, dateEmprunt: new Date('2025-03-12'), dateRetour: new Date('2025-03-26') },
-      { idLivre: 12, idAdherent: 7, dateEmprunt: new Date('2025-03-20'), dateRetour: new Date('2025-04-03') },
+      // Pour l’adhérent 1, 5 emprunts
+      { idLivre: 1,  idAdherent: 1, dateEmprunt: new Date('2025-01-01'), dateRetour: new Date('2025-01-15') },
+      { idLivre: 2,  idAdherent: 1, dateEmprunt: new Date('2025-01-10'), dateRetour: new Date('2025-01-24') },
+      { idLivre: 3,  idAdherent: 1, dateEmprunt: new Date('2025-02-01'), dateRetour: new Date('2025-02-15') },
+      { idLivre: 4,  idAdherent: 1, dateEmprunt: new Date('2025-02-20'), dateRetour: new Date('2025-03-06') },
+      { idLivre: 5,  idAdherent: 1, dateEmprunt: new Date('2025-03-10'), dateRetour: new Date('2025-03-24') },
+
+      // Pour l’adhérent 2, 8 emprunts
+      { idLivre: 6,  idAdherent: 2, dateEmprunt: new Date('2025-01-05'), dateRetour: new Date('2025-01-19') },
+      { idLivre: 7,  idAdherent: 2, dateEmprunt: new Date('2025-01-15'), dateRetour: new Date('2025-01-29') },
+      { idLivre: 8,  idAdherent: 2, dateEmprunt: new Date('2025-02-05'), dateRetour: new Date('2025-02-19') },
+      { idLivre: 9,  idAdherent: 2, dateEmprunt: new Date('2025-02-15'), dateRetour: new Date('2025-03-01') },
+      { idLivre: 10, idAdherent: 2, dateEmprunt: new Date('2025-03-01'), dateRetour: new Date('2025-03-15') },
+      { idLivre: 11, idAdherent: 2, dateEmprunt: new Date('2025-03-15'), dateRetour: new Date('2025-03-29') },
+      { idLivre: 12, idAdherent: 2, dateEmprunt: new Date('2025-04-01'), dateRetour: new Date('2025-04-15') },
+      { idLivre: 1,  idAdherent: 2, dateEmprunt: new Date('2025-04-10'), dateRetour: new Date('2025-04-24') },
+
+      // Pour l’adhérent 3, 4 emprunts
+      { idLivre: 2, idAdherent: 3, dateEmprunt: new Date('2025-01-12'), dateRetour: new Date('2025-01-26') },
+      { idLivre: 4, idAdherent: 3, dateEmprunt: new Date('2025-02-10'), dateRetour: new Date('2025-02-24') },
+      { idLivre: 6, idAdherent: 3, dateEmprunt: new Date('2025-03-05'), dateRetour: new Date('2025-03-19') },
+      { idLivre: 8, idAdherent: 3, dateEmprunt: new Date('2025-03-20'), dateRetour: new Date('2025-04-03') },
+
+      // Pour l’adhérent 4, 6 emprunts
+      { idLivre: 3,  idAdherent: 4, dateEmprunt: new Date('2025-01-20'), dateRetour: new Date('2025-02-03') },
+      { idLivre: 5,  idAdherent: 4, dateEmprunt: new Date('2025-02-01'), dateRetour: new Date('2025-02-15') },
+      { idLivre: 7,  idAdherent: 4, dateEmprunt: new Date('2025-02-18'), dateRetour: new Date('2025-03-04') },
+      { idLivre: 9,  idAdherent: 4, dateEmprunt: new Date('2025-03-01'), dateRetour: new Date('2025-03-15') },
+      { idLivre: 11, idAdherent: 4, dateEmprunt: new Date('2025-03-15'), dateRetour: new Date('2025-03-29') },
+      { idLivre: 2,  idAdherent: 4, dateEmprunt: new Date('2025-04-05'), dateRetour: new Date('2025-04-19') },
+
+      // Pour l’adhérent 5, 3 emprunts
+      { idLivre: 10, idAdherent: 5, dateEmprunt: new Date('2025-02-12'), dateRetour: new Date('2025-02-26') },
+      { idLivre: 12, idAdherent: 5, dateEmprunt: new Date('2025-03-10'), dateRetour: new Date('2025-03-24') },
+      { idLivre: 1,  idAdherent: 5, dateEmprunt: new Date('2025-03-25'), dateRetour: new Date('2025-04-08') },
+
+      // Ajout de quelques emprunts croisés pour pimenter
+      { idLivre: 5,  idAdherent: 3, dateEmprunt: new Date('2025-04-01'), dateRetour: new Date('2025-04-15') },
+      { idLivre: 8,  idAdherent: 1, dateEmprunt: new Date('2025-04-10'), dateRetour: new Date('2025-04-24') },
+      { idLivre: 3,  idAdherent: 2, dateEmprunt: new Date('2025-04-12'), dateRetour: new Date('2025-04-26') },
     ],
   });
 
   // 4) seed Commande
   await prisma.commande.createMany({
     data: [
-      { idLivre: 1, idAdherent: 3, dateCommande: new Date('2025-03-01'), etatCommande: 'en attente' },
-      { idLivre: 2, idAdherent: 4, dateCommande: new Date('2025-03-05'), etatCommande: 'expédiée' },
-      { idLivre: 3, idAdherent: 5, dateCommande: new Date('2025-02-20'), etatCommande: 'livrée' },
-      { idLivre: 4, idAdherent: 6, dateCommande: new Date('2025-01-15'), etatCommande: 'expédiée' },
-      { idLivre: 5, idAdherent: 7, dateCommande: new Date('2025-01-20'), etatCommande: 'annulée' },
-      { idLivre: 6, idAdherent: 8, dateCommande: new Date('2025-02-25'), etatCommande: 'expédiée' },
-      { idLivre: 7, idAdherent: 9, dateCommande: new Date('2025-03-18'), etatCommande: 'en attente' },
-      { idLivre: 8, idAdherent: 10, dateCommande: new Date('2025-03-22'), etatCommande: 'livrée' },
-      { idLivre: 9, idAdherent: 11, dateCommande: new Date('2025-03-02'), etatCommande: 'livrée' },
-      { idLivre: 10, idAdherent: 12, dateCommande: new Date('2025-02-28'), etatCommande: 'annulée' },
-      { idLivre: 11, idAdherent: 1, dateCommande: new Date('2025-03-30'), etatCommande: 'expédiée' },
-      { idLivre: 12, idAdherent: 2, dateCommande: new Date('2025-03-31'), etatCommande: 'en attente' },
+      // commandes variées, certains livres commandés plusieurs fois
+      { idLivre: 1,  idAdherent: 1, dateCommande: new Date('2025-01-05'), etatCommande: 'expédiée' },
+      { idLivre: 2,  idAdherent: 1, dateCommande: new Date('2025-01-15'), etatCommande: 'livrée' },
+      { idLivre: 3,  idAdherent: 2, dateCommande: new Date('2025-02-01'), etatCommande: 'en attente' },
+      { idLivre: 4,  idAdherent: 3, dateCommande: new Date('2025-02-10'), etatCommande: 'annulée' },
+      { idLivre: 5,  idAdherent: 4, dateCommande: new Date('2025-02-20'), etatCommande: 'expédiée' },
+      { idLivre: 6,  idAdherent: 5, dateCommande: new Date('2025-03-01'), etatCommande: 'livrée' },
+      { idLivre: 7,  idAdherent: 6, dateCommande: new Date('2025-03-10'), etatCommande: 'expédiée' },
+      { idLivre: 8,  idAdherent: 7, dateCommande: new Date('2025-03-15'), etatCommande: 'en attente' },
+      { idLivre: 9,  idAdherent: 8, dateCommande: new Date('2025-03-22'), etatCommande: 'livrée' },
+      { idLivre: 10, idAdherent: 9, dateCommande: new Date('2025-03-25'), etatCommande: 'expédiée' },
+      { idLivre: 11, idAdherent: 10, dateCommande: new Date('2025-03-27'), etatCommande: 'annulée' },
+      { idLivre: 12, idAdherent: 11, dateCommande: new Date('2025-03-29'), etatCommande: 'livrée' },
+      // quelques re‑commandes de certains livres
+      { idLivre: 1,  idAdherent: 2, dateCommande: new Date('2025-04-01'), etatCommande: 'en attente' },
+      { idLivre: 5,  idAdherent: 3, dateCommande: new Date('2025-04-05'), etatCommande: 'expédiée' },
+      { idLivre: 2,  idAdherent: 4, dateCommande: new Date('2025-04-10'), etatCommande: 'livrée' },
+      { idLivre: 3,  idAdherent: 5, dateCommande: new Date('2025-04-12'), etatCommande: 'en attente' },
+      { idLivre: 7,  idAdherent: 6, dateCommande: new Date('2025-04-15'), etatCommande: 'expédiée' },
+      { idLivre: 8,  idAdherent: 7, dateCommande: new Date('2025-04-18'), etatCommande: 'livrée' },
+      { idLivre: 9,  idAdherent: 8, dateCommande: new Date('2025-04-20'), etatCommande: 'expédiée' },
     ],
   });
+
+  console.log('✅');
 }
 
 main()

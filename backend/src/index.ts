@@ -98,6 +98,55 @@ app.get('/emprunts', async (req, res) => {
   res.json(emprunts);
 });
 
+// 8) Stat: nombre d'emprunts par livre
+// GET /stats/borrow-count-per-book
+app.get('/stats/borrow-count-per-book', async (req, res) => {
+  const stats = await prisma.livre.findMany({
+    select: {
+      idLivre: true,
+      titre:   true,
+      _count:  { select: { emprunts: true } }
+    },
+    orderBy: {
+      emprunts: { _count: 'desc' }
+    }
+  });
+
+  // renomme dans la réponse JSON
+  const result = stats.map(b => ({
+    idLivre:     b.idLivre,
+    titre:       b.titre,
+    borrowCount: b._count.emprunts,
+  }));
+
+  res.json(result);
+});
+
+// 9) top 5 adhérents ayant emprunté le plus de livres, avec leur nom et leur nombre d’emprunts
+// GET /stats/top-readers
+app.get('/stats/top-readers', async (req, res) => {
+  const topReaders = await prisma.adherent.findMany({
+    select: {
+      idAdherent: true,
+      nom:        true,
+      _count:     { select: { emprunts: true } }
+    },
+    orderBy: {
+      emprunts: { _count: 'desc' }
+    },
+    take: 5
+  });
+
+  const result = topReaders.map(a => ({
+    idAdherent:  a.idAdherent,
+    nom:         a.nom,
+    borrowCount: a._count.emprunts,
+  }));
+
+  res.json(result);
+});
+
+
 app.listen(3001, () => {
   console.log('Backend is running at http://localhost:3001');
 });
