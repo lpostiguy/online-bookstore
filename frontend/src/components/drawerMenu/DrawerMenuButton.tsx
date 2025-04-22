@@ -1,8 +1,8 @@
 import React from "react";
 
 type Props = {
-  iconActive: string;
-  iconInactive: string;
+  iconActive?: string;
+  iconInactive?: string;
   label?: string;
   active?: boolean;
   onClick?: () => void;
@@ -18,17 +18,23 @@ export const DrawerMenuButton: React.FC<Props> = ({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-start space-x-4 py-2 px-6 rounded-2xl transition delay-75 ease-in-out w-44 ${
+      className={`flex items-center ${
+        !iconActive && !iconInactive
+          ? "justify-center w-32 py-1"
+          : "justify-start w-44 py-2"
+      } space-x-4 px-6 rounded-2xl transition delay-75 ease-in-out ${
         active
           ? "bg-[#8e80d9] bg-opacity-80"
           : "hover:bg-[#8e80d9] hover:bg-opacity-20"
       }`}
     >
-      <img
-        className="w-6"
-        src={active ? iconActive : iconInactive}
-        alt="icon"
-      />
+      {iconActive && iconInactive && (
+        <img
+          className="w-6"
+          src={active ? iconActive : iconInactive}
+          alt="icon"
+        />
+      )}
       {label && (
         <span
           className={`py-1 text-lg ${

@@ -15,16 +15,22 @@ export const EmpruntsSection: React.FC = () => {
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Mes emprunts</h2>
+        <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
+          Mes emprunts
+        </h2>
       </div>
       <div className="mt-4">
         {emprunts.map((emprunt, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-4 px-10 shadow-sm flex justify-between items-center text-center m-2"
+            className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
           >
-            <div className="space-y-4">
-              <img className="w-20" src={bookPlaceholder} alt="Place Holder" />
+            <div className="space-y-4 pb-4 lg:pb-0">
+              <img
+                className="w-20 mx-auto lg:mx-0"
+                src={bookPlaceholder}
+                alt="Place Holder"
+              />
               <p className="line-clamp-1 text-left">
                 {emprunt.livre.titre}, {emprunt.livre.auteur}
               </p>

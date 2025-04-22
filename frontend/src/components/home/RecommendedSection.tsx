@@ -17,7 +17,7 @@ export const RecommendedSection: React.FC<Props> = ({
   const [livres, setLivres] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/livres")
+    fetch(`http://localhost:3001/stats/borrow-count-per-book`)
       .then((res) => res.json())
       .then((data) => setLivres(data));
   }, []);
@@ -30,11 +30,13 @@ export const RecommendedSection: React.FC<Props> = ({
           setShowProductPage={setShowProductPage}
         />
       ) : (
-        <div className="rounded-xl w-full lg:w-3/4 bg-slate-100 shadow-md h-1/2 p-6">
+        <div className="rounded-xl w-full lg:w-3/4 bg-slate-100 shadow-md h-auto lg:h-1/2 p-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Recommandé</h2>
+            <h2 className="text-2xl font-bold text-center md:text-left w-full md:w-auto">
+              Les plus populaires
+            </h2>
             <Link
-              className="bg-[#8e80d9] bg-opacity-90 py-2 px-4 rounded-xl text-slate-100 flex justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300"
+              className="bg-[#8e80d9] bg-opacity-90 py-2 px-4 rounded-xl text-slate-100 justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300 hidden md:flex"
               to="/explore"
             >
               <p>Voir plus</p>
@@ -42,7 +44,7 @@ export const RecommendedSection: React.FC<Props> = ({
             </Link>
           </div>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center">
-            {livres.slice(0, 10).map((livre, index) => (
+            {livres.slice(0, 12).map((livre, index) => (
               <button
                 onClick={() => {
                   setShowProductPage(true);
@@ -60,6 +62,13 @@ export const RecommendedSection: React.FC<Props> = ({
               </button>
             ))}
           </div>
+          <Link
+            className="mt-6 flex justify-center items-center bg-[#8e80d9] bg-opacity-90 rounded-xl text-slate-100 space-x-1 hover:bg-opacity-60 transition duration-300 w-full py-3 md:hidden"
+            to="/explore"
+          >
+            <p>Voir plus</p>
+            <img src={arrowSvg} alt="Arrow" className="w-5 h-5 pt-1" />
+          </Link>
         </div>
       )}
     </>

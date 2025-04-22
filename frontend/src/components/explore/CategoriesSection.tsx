@@ -12,9 +12,11 @@ export const CategoriesSection: React.FC<Props> = ({
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-auto p-4 space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Catégories</h2>
+        <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
+          Catégories
+        </h2>
       </div>
-      <div className="space-x-5 space-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 items-stretch">
         <button
           className={`${
             selectedCategory === "Tous"

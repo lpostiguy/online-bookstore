@@ -43,15 +43,15 @@ app.get('/mes-commandes', async (req, res) => {
 app.post('/emprunts', async (req, res) => {
   const { userId, livreId } = req.body;
 
-  const now    = new Date();
+  const now = new Date();
   const retour = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
 
   const emprunt = await prisma.emprunt.create({
     data: {
-      idAdherent:  userId,
-      idLivre:     livreId,
+      idAdherent: userId,
+      idLivre: livreId,
       dateEmprunt: now,
-      dateRetour:  retour,
+      dateRetour: retour,
     }
   });
 
@@ -104,8 +104,10 @@ app.get('/stats/borrow-count-per-book', async (req, res) => {
   const stats = await prisma.livre.findMany({
     select: {
       idLivre: true,
-      titre:   true,
-      _count:  { select: { emprunts: true } }
+      titre: true,
+      auteur: true,
+      genre: true,
+      _count: { select: { emprunts: true } }
     },
     orderBy: {
       emprunts: { _count: 'desc' }
@@ -114,8 +116,10 @@ app.get('/stats/borrow-count-per-book', async (req, res) => {
 
   // renomme dans la réponse JSON
   const result = stats.map(b => ({
-    idLivre:     b.idLivre,
-    titre:       b.titre,
+    idLivre: b.idLivre,
+    titre: b.titre,
+    auteur: b.auteur,
+    genre: b.genre,
     borrowCount: b._count.emprunts,
   }));
 
@@ -128,8 +132,8 @@ app.get('/stats/top-readers', async (req, res) => {
   const topReaders = await prisma.adherent.findMany({
     select: {
       idAdherent: true,
-      nom:        true,
-      _count:     { select: { emprunts: true } }
+      nom: true,
+      _count: { select: { emprunts: true } }
     },
     orderBy: {
       emprunts: { _count: 'desc' }
@@ -138,8 +142,8 @@ app.get('/stats/top-readers', async (req, res) => {
   });
 
   const result = topReaders.map(a => ({
-    idAdherent:  a.idAdherent,
-    nom:         a.nom,
+    idAdherent: a.idAdherent,
+    nom: a.nom,
     borrowCount: a._count.emprunts,
   }));
 

@@ -12,7 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 export const DrawerMenu: React.FC = () => {
   const location = useLocation();
   return (
-    <div className="w-64 h-[100hv] min-h-[800px] bg-slate-100 drop-shadow-xl px-8">
+    <div className="hidden md:block w-64 h-[100hv] min-h-[800px] bg-slate-100 drop-shadow-xl px-8">
       <Link
         to="/home"
         className="flex items-center space-x-2 justify-center h-28 hover:opacity-80 transition ease-in-out duration-300"
