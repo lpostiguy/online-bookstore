@@ -27,7 +27,7 @@ export const DrawerMenu: React.FC = () => {
         <Link to={"/home"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/home"}
-            label="Acceuil"
+            label="Accueil"
             iconActive={homeActiveSvg}
             iconInactive={homeInactiveSvg}
           />

@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
                 to="/emprunts"
               >
-                Mes Emprunt
+                Mes Emprunts
               </Link>
               <Link
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
         <Link to={"/home"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/home"}
-            label="Acceuil"
+            label="Accueil"
           />
         </Link>
         <Link to={"/explore"} draggable={false}>
