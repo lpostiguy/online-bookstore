@@ -1,32 +1,34 @@
-# 🚀 Projet Fullstack React + Express + SQLite
+# Online BookStore Web App
 
-Ce projet est une application fullstack avec :
+<img width="3038" height="1626" alt="Online_book_store" src="https://github.com/user-attachments/assets/db6537e3-fd86-4bd3-80ca-c53862802197" />
 
-- 🎨 Frontend : React + TypeScript
-- 🔙 Backend : Express.js + TypeScript
-- 🗄️ Base de données : SQLite avec Prisma ORM
+This project is a fullstack web application built with:
+
+- 🎨 Frontend: React + TypeScript
+- 🔙 Backend: Express.js + TypeScript
+- 🗄️ Database: SQLite with Prisma ORM
 
 ---
 
-## 🛠️ Prérequis
+## 🛠️ Prerequisites
 
-- Node.js (version LTS recommandée)
-- npm (inclus avec Node)
+- Node.js (LTS version recommended)
+- npm (included with Node.js)
 - Git
-- (optionnel) VS Code
+- (optional) VS Code
 
 ---
 
-## 📦 Installation manuelle
+## 📦 Manual Installation
 
-1. Cloner le dépôt :
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/votre-nom/projet-fullstack.git
-cd projet-fullstack
+git clone https://github.com/your-username/fullstack-project.git
+cd fullstack-project
 ```
 
-2. Installer les dépendances :
+2. Install dependencies:
 
 ```bash
 cd backend
@@ -41,16 +43,16 @@ npm install
 
 ---
 
-## ⚡ Lancement
+## ⚡ Running the App
 
-Dans un terminal :
+In one terminal:
 
 ```bash
 cd backend
 npm run dev
 ```
 
-Dans un autre terminal :
+In another terminal:
 
 ```bash
 cd frontend
@@ -59,15 +61,15 @@ npm start
 
 ---
 
-## ⚙️ Script automatique
+## ⚙️ Automatic Setup Script
 
-### Pour Windows
+### For Windows
 
 ```bash
 setup.bat
 ```
 
-### Pour Linux ou macOS
+### For Linux or macOS
 
 ```bash
 chmod +x setup.sh
@@ -76,26 +78,26 @@ chmod +x setup.sh
 
 ---
 
-## 🌐 Accès
+## 🌐 Access
 
-- Frontend : [http://localhost:3000](http://localhost:3000)
-- API backend : [http://localhost:3001/api](http://localhost:3001/api)
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001/api
 
 ---
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
-projet-fullstack/
+fullstack-project/
 ├── backend/
-|   ├── node_modules
+│   ├── node_modules/
 │   ├── src/
-|       └── index.ts
+│   │   └── index.ts
 │   ├── prisma/
 │   ├── .env.example
 │   └── package.json
 ├── frontend/
-├── ├── src/
+│   ├── src/
 │   └── package.json
 ├── setup.sh
 ├── setup.bat
@@ -106,4 +108,4 @@ projet-fullstack/
 
 ## 📬 Contact
 
-Pour toute question ou suggestion, n'hésitez pas à ouvrir une issue ou me contacter directement.
+For any questions or suggestions, feel free to open an issue or contact me directly.
