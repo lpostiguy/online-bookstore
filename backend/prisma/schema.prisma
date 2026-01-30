@@ -12,6 +12,7 @@ model Book {
   title    String
   genre    String
   author   String
+  imageUrl String?
   loans    Loan[]
   orders   Order[]
 }

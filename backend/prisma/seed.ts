@@ -11,76 +11,175 @@ async function main() {
         title: "A Walk to Remember",
         genre: "Romance",
         author: "Nicholas Sparks",
+        imageUrl: "https://covers.openlibrary.org/b/id/229771-L.jpg",
       },
-      { title: "Me Before You", genre: "Romance", author: "Jojo Moyes" },
-      { title: "The Notebook", genre: "Romance", author: "Nicholas Sparks" },
-      { title: "Delicacy", genre: "Romance", author: "David Foenkinos" },
+      {
+        title: "Me Before You",
+        genre: "Romance",
+        author: "Jojo Moyes",
+        imageUrl: "https://covers.openlibrary.org/b/id/14419339-L.jpg",
+      },
+      {
+        title: "The Notebook",
+        genre: "Romance",
+        author: "Nicholas Sparks",
+        imageUrl: "https://covers.openlibrary.org/b/id/12290816-L.jpg",
+      },
+      {
+        title: "Delicacy",
+        genre: "Romance",
+        author: "David Foenkinos",
+        imageUrl: "https://covers.openlibrary.org/b/id/7384441-L.jpg",
+      },
 
       // --- Fiction ---
       {
         title: "Perfume: The Story of a Murderer",
         genre: "Fiction",
         author: "Patrick Süskind",
+        imageUrl: "https://covers.openlibrary.org/b/id/10910286-L.jpg",
       },
-      { title: "Shutter Island", genre: "Fiction", author: "Dennis Lehane" },
-      { title: "The Road", genre: "Fiction", author: "Cormac McCarthy" },
+      {
+        title: "Shutter Island",
+        genre: "Fiction",
+        author: "Dennis Lehane",
+        imageUrl: "https://covers.openlibrary.org/b/id/28990-L.jpg",
+      },
+      {
+        title: "The Road",
+        genre: "Fiction",
+        author: "Cormac McCarthy",
+        imageUrl: "https://covers.openlibrary.org/b/id/198120-L.jpg",
+      },
       {
         title: "The Name of the Rose",
         genre: "Fiction",
         author: "Umberto Eco",
+        imageUrl: "https://covers.openlibrary.org/b/id/8598263-L.jpg",
       },
 
       // --- Biographies ---
-      { title: "Steve Jobs", genre: "Biographies", author: "Walter Isaacson" },
-      { title: "Becoming", genre: "Biographies", author: "Michelle Obama" },
-      { title: "Elon Musk", genre: "Biographies", author: "Ashlee Vance" },
+      {
+        title: "Steve Jobs",
+        genre: "Biographies",
+        author: "Walter Isaacson",
+        imageUrl: "https://covers.openlibrary.org/b/id/12374726-L.jpg",
+      },
+      {
+        title: "Becoming",
+        genre: "Biographies",
+        author: "Michelle Obama",
+        imageUrl: "https://placehold.co/400?text=Becoming",
+      },
+      {
+        title: "Elon Musk",
+        genre: "Biographies",
+        author: "Ashlee Vance",
+        imageUrl: "https://covers.openlibrary.org/b/id/8463846-L.jpg",
+      },
       {
         title: "I Am Malala",
         genre: "Biographies",
         author: "Malala Yousafzai",
+        imageUrl: "https://covers.openlibrary.org/b/id/9358664-L.jpg",
       },
 
       // --- Poetry ---
-      { title: "The Drunken Boat", genre: "Poetry", author: "Arthur Rimbaud" },
-      { title: "Paroles", genre: "Poetry", author: "Jacques Prévert" },
-      { title: "The Dice Cup", genre: "Poetry", author: "Max Jacob" },
+      {
+        title: "The Drunken Boat",
+        genre: "Poetry",
+        author: "Arthur Rimbaud",
+        imageUrl: "https://covers.openlibrary.org/b/id/11622962-L.jpg",
+      },
+      {
+        title: "Paroles",
+        genre: "Poetry",
+        author: "Jacques Prévert",
+        imageUrl: "https://covers.openlibrary.org/b/id/3140406-L.jpg",
+      },
+      {
+        title: "The Dice Cup",
+        genre: "Poetry",
+        author: "Max Jacob",
+        imageUrl: "https://covers.openlibrary.org/b/id/9885041-L.jpg",
+      },
 
       // --- Comics ---
       {
         title: "Blake and Mortimer",
         genre: "Comics",
         author: "Edgar P. Jacobs",
+        imageUrl: "https://placehold.co/400?text=Blake+and+Mortimer",
       },
-      { title: "Lucky Luke", genre: "Comics", author: "Morris" },
-      { title: "The Smurfs", genre: "Comics", author: "Peyo" },
-      { title: "Garfield", genre: "Comics", author: "Jim Davis" },
+      {
+        title: "Lucky Luke",
+        genre: "Comics",
+        author: "Morris",
+        imageUrl: "https://covers.openlibrary.org/b/id/987088-L.jpg",
+      },
+      {
+        title: "The Smurfs",
+        genre: "Comics",
+        author: "Peyo",
+        imageUrl: "https://covers.openlibrary.org/b/id/6466472-L.jpg",
+      },
+      {
+        title: "Garfield",
+        genre: "Comics",
+        author: "Jim Davis",
+        imageUrl: "https://covers.openlibrary.org/b/id/10708503-L.jpg",
+      },
 
       // --- Cooking ---
-      { title: "Home Made", genre: "Cooking", author: "Cyril Lignac" },
+      {
+        title: "Home Made",
+        genre: "Cooking",
+        author: "Cyril Lignac",
+        imageUrl: "https://placehold.co/400?text=Home+Made",
+      },
       {
         title: "Vegetarian Cooking",
         genre: "Cooking",
         author: "Delphine Pocard",
+        imageUrl: "https://placehold.co/400?text=Vegetarian+Cooking",
       },
-      { title: "Patisserie!", genre: "Cooking", author: "Christophe Felder" },
+      {
+        title: "Patisserie!",
+        genre: "Cooking",
+        author: "Christophe Felder",
+        imageUrl: "https://covers.openlibrary.org/b/id/8519506-L.jpg",
+      },
       {
         title: "Cooking for Dummies",
         genre: "Cooking",
         author: "Bryan Miller",
+        imageUrl: "https://covers.openlibrary.org/b/id/522576-L.jpg",
       },
 
       // --- History ---
-      { title: "The Art of War", genre: "History", author: "Sun Tzu" },
+      {
+        title: "The Art of War",
+        genre: "History",
+        author: "Sun Tzu",
+        imageUrl: "https://covers.openlibrary.org/b/id/4849549-L.jpg",
+      },
       {
         title: "Great Dates in French History",
         genre: "History",
         author: "André Castelot",
+        imageUrl: "https://placehold.co/400?text=Great+Dates",
       },
-      { title: "Napoleon", genre: "History", author: "André Castelot" },
+      {
+        title: "Napoleon",
+        genre: "History",
+        author: "André Castelot",
+        imageUrl: "https://covers.openlibrary.org/b/id/5229254-L.jpg",
+      },
       {
         title: "The Second World War",
         genre: "History",
         author: "Winston Churchill",
+        imageUrl: "https://covers.openlibrary.org/b/id/7347623-L.jpg",
       },
 
       // --- Mixed (existing) ---
@@ -88,38 +187,74 @@ async function main() {
         title: "The Little Prince",
         genre: "Fiction",
         author: "Antoine de Saint-Exupéry",
+        imageUrl: "https://covers.openlibrary.org/b/id/10708272-L.jpg",
       },
       {
         title: "The Lord of the Rings",
         genre: "Fiction",
         author: "J.R.R. Tolkien",
+        imageUrl: "https://covers.openlibrary.org/b/id/6783472-L.jpg",
       },
       {
         title: "Harry Potter and the Philosopher's Stone",
         genre: "Fiction",
         author: "J.K. Rowling",
+        imageUrl: "https://covers.openlibrary.org/b/id/15155833-L.jpg",
       },
-      { title: "Dune", genre: "Fiction", author: "Frank Herbert" },
+      {
+        title: "Dune",
+        genre: "Fiction",
+        author: "Frank Herbert",
+        imageUrl: "https://covers.openlibrary.org/b/id/11481354-L.jpg",
+      },
       {
         title: "Crime and Punishment",
         genre: "Fiction",
         author: "Fyodor Dostoevsky",
+        imageUrl: "https://covers.openlibrary.org/b/id/10744834-L.jpg",
       },
-      { title: "Les Misérables", genre: "Fiction", author: "Victor Hugo" },
-      { title: "The Hobbit", genre: "Fiction", author: "J.R.R. Tolkien" },
-      { title: "Frankenstein", genre: "Fiction", author: "Mary Shelley" },
+      {
+        title: "Les Misérables",
+        genre: "Fiction",
+        author: "Victor Hugo",
+        imageUrl: "https://covers.openlibrary.org/b/id/11012366-L.jpg",
+      },
+      {
+        title: "The Hobbit",
+        genre: "Fiction",
+        author: "J.R.R. Tolkien",
+        imageUrl: "https://covers.openlibrary.org/b/id/10762989-L.jpg",
+      },
+      {
+        title: "Frankenstein",
+        genre: "Fiction",
+        author: "Mary Shelley",
+        imageUrl: "https://covers.openlibrary.org/b/id/12356249-L.jpg",
+      },
       {
         title: "To Kill a Mockingbird",
         genre: "Fiction",
         author: "Harper Lee",
+        imageUrl: "https://covers.openlibrary.org/b/id/12784310-L.jpg",
       },
       {
         title: "The Catcher in the Rye",
         genre: "Fiction",
         author: "J. D. Salinger",
+        imageUrl: "https://covers.openlibrary.org/b/id/9273489-L.jpg",
       },
-      { title: "Go Set a Watchman", genre: "Fiction", author: "Harper Lee" },
-      { title: "Fahrenheit 451", genre: "Fiction", author: "Ray Bradbury" },
+      {
+        title: "Go Set a Watchman",
+        genre: "Fiction",
+        author: "Harper Lee",
+        imageUrl: "https://covers.openlibrary.org/b/id/7383195-L.jpg",
+      },
+      {
+        title: "Fahrenheit 451",
+        genre: "Fiction",
+        author: "Ray Bradbury",
+        imageUrl: "https://placehold.co/400?text=Fahrenheit+451",
+      },
     ],
   });
 
