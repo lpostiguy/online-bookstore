@@ -1,5 +1,8 @@
 # Online BookStore Web App
 
+## 🔗 Live Demo
+You can preview the project, hosted here: [online-bookstore.vercel.app](https://online-bookstore-jyzs.vercel.app/)
+
 <img width="3038" height="1626" alt="Online_book_store" src="https://github.com/user-attachments/assets/db6537e3-fd86-4bd3-80ca-c53862802197" />
 
 This project is a fullstack web application built with:
@@ -7,7 +10,7 @@ This project is a fullstack web application built with:
 - 🎨 Frontend: React + TypeScript
 - 🔙 Backend: Express.js + TypeScript
 - 🗄️ Database: SQLite with Prisma ORM
-
+https://online-bookstore-jyzs.vercel.app/
 ---
 
 ## 🛠️ Prerequisites
