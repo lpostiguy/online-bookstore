@@ -109,6 +109,7 @@ app.get("/stats/borrow-count-per-book", async (req, res) => {
       title: true,
       author: true,
       genre: true,
+      imageUrl: true,
       _count: { select: { loans: true } },
     },
     orderBy: {
@@ -122,6 +123,7 @@ app.get("/stats/borrow-count-per-book", async (req, res) => {
     title: b.title,
     author: b.author,
     genre: b.genre,
+    imageUrl: b.imageUrl,
     borrowCount: b._count.loans,
   }));
 
