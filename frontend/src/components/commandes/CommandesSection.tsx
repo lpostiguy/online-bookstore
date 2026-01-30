@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import bookPlaceholder from "../../assets/img/book.png";
 
 export const CommandesSection: React.FC = () => {
@@ -6,17 +7,33 @@ export const CommandesSection: React.FC = () => {
 
   useEffect(() => {
     const userId = 1;
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-    fetch(`http://localhost:3001/mes-commandes?userId=${userId}`)
+    fetch(`${API_URL}/mes-commandes?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => setCommandes(data));
   }, []);
+
+  const translateStatus = (status: string) => {
+    switch (status) {
+      case "expédiée":
+        return "Shipped";
+      case "livrée":
+        return "Delivered";
+      case "en attente":
+        return "Pending";
+      case "annulée":
+        return "Cancelled";
+      default:
+        return status;
+    }
+  };
 
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
-          Mes commandes
+          My Orders
         </h2>
       </div>
       <div className="mt-4">
@@ -37,11 +54,11 @@ export const CommandesSection: React.FC = () => {
             </div>
             <div className="space-y-4">
               <p className="line-clamp-1">
-                Date de la commande :{" "}
-                {new Date(commandes.dateCommande).toLocaleDateString("fr-FR")}
+                Order Date:{" "}
+                {new Date(commandes.dateCommande).toLocaleDateString("en-US")}
               </p>
               <p className="line-clamp-1">
-                État de la commande : {commandes.etatCommande}
+                Order Status: {translateStatus(commandes.etatCommande)}
               </p>
             </div>
           </div>

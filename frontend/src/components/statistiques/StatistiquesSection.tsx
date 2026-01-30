@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import bookPlaceholder from "../../assets/img/book.png";
 import profilePlaceholderSvg from "../../assets/svg/profile.svg";
 
@@ -16,27 +17,45 @@ export const StatistiquesSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/emprunts`)
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    fetch(`${API_URL}/emprunts`)
       .then((res) => res.json())
       .then((data) => setEmprunts(data));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/stats/borrow-count-per-book`)
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    fetch(`${API_URL}/stats/borrow-count-per-book`)
       .then((res) => res.json())
       .then((data) => setBorrowCounts(data));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/stats/top-readers`)
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    fetch(`${API_URL}/stats/top-readers`)
       .then((res) => res.json())
       .then((data) => setTopReaders(data));
   }, []);
 
+  const translateStatus = (status: string) => {
+    switch (status) {
+      case "expédiée":
+        return "Shipped";
+      case "livrée":
+        return "Delivered";
+      case "en attente":
+        return "Pending";
+      case "annulée":
+        return "Cancelled";
+      default:
+        return status;
+    }
+  };
+
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
-        Statistiques
+        Statistics
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6 items-stretch">
         <button
@@ -47,7 +66,7 @@ export const StatistiquesSection: React.FC = () => {
           } p-4 rounded-xl transition duration-300 ease-in-out`}
           onClick={() => setView("Commande")}
         >
-          Voir toutes les commandes
+          View all orders
         </button>
         <button
           className={`${
@@ -57,7 +76,7 @@ export const StatistiquesSection: React.FC = () => {
           } p-4 rounded-xl transition duration-300 ease-in-out`}
           onClick={() => setView("Emprunt")}
         >
-          Voir tous les emprunts
+          View all loans
         </button>
         <button
           className={`${
@@ -67,7 +86,7 @@ export const StatistiquesSection: React.FC = () => {
           } p-4 rounded-xl transition duration-300 ease-in-out`}
           onClick={() => setView("EmpruntParLivre")}
         >
-          <p>Voir le nombre d'emprunts par livre (en ordre décroissant)</p>
+          <p>View loan count per book (descending)</p>
         </button>
         <button
           className={`${
@@ -77,7 +96,7 @@ export const StatistiquesSection: React.FC = () => {
           } p-4 rounded-xl transition duration-300 ease-in-out`}
           onClick={() => setView("TopAdhérents")}
         >
-          <p>Voir le top 5 des adhérents ayant emprunté le plus de livres</p>
+          <p>View top 5 active members</p>
         </button>
       </div>
 
@@ -100,11 +119,11 @@ export const StatistiquesSection: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Date de la commande :{" "}
-                  {new Date(commande.dateCommande).toLocaleDateString("fr-FR")}
+                  Order Date:{" "}
+                  {new Date(commande.dateCommande).toLocaleDateString("en-US")}
                 </p>
                 <p className="text-center lg:text-left">
-                  État de la commande : {commande.etatCommande}
+                  Order Status: {translateStatus(commande.etatCommande)}
                 </p>
               </div>
             </div>
@@ -131,15 +150,15 @@ export const StatistiquesSection: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Id Adherent : {emprunt.idAdherent}
+                  Member ID: {emprunt.idAdherent}
                 </p>
                 <p className="text-center lg:text-left">
-                  Date d'emprunt :{" "}
-                  {new Date(emprunt.dateEmprunt).toLocaleDateString("fr-FR")}
+                  Loan Date:{" "}
+                  {new Date(emprunt.dateEmprunt).toLocaleDateString("en-US")}
                 </p>
                 <p className="text-center lg:text-left">
-                  Date de retour :{" "}
-                  {new Date(emprunt.dateRetour).toLocaleDateString("fr-FR")}
+                  Return Date:{" "}
+                  {new Date(emprunt.dateRetour).toLocaleDateString("en-US")}
                 </p>
               </div>
             </div>
@@ -162,19 +181,19 @@ export const StatistiquesSection: React.FC = () => {
                 />
                 <div className="space-y-1">
                   <p className="text-center lg:text-left">
-                    Titre du livre : {borrowCount.titre}
+                    Book Title: {borrowCount.titre}
                   </p>
                   <p className="text-center lg:text-left">
-                    Auteur : {borrowCount.auteur}
+                    Author: {borrowCount.auteur}
                   </p>
                   <p className="text-center lg:text-left">
-                    Id Livre : {borrowCount.idLivre}
+                    Book ID: {borrowCount.idLivre}
                   </p>
                 </div>
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Nombre d'emprunts : {borrowCount.borrowCount}
+                  Loan Count: {borrowCount.borrowCount}
                 </p>
               </div>
             </div>
@@ -196,16 +215,16 @@ export const StatistiquesSection: React.FC = () => {
                 />
                 <div className="flex lg:flex-col space-x-4 lg:space-x-0">
                   <p className="text-center lg:text-left">
-                    Nom : {topReaders.nom}
+                    Name: {topReaders.nom}
                   </p>
                   <p className="text-center lg:text-left">
-                    Id : {topReaders.idAdherent}
+                    ID: {topReaders.idAdherent}
                   </p>
                 </div>
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Nombre d'emprunts : {topReaders.borrowCount}
+                  Loan Count: {topReaders.borrowCount}
                 </p>
               </div>
             </div>

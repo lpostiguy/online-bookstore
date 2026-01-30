@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import bookPlaceholder from "../assets/img/book.png";
+
 import arrowSvg from "../assets/svg/arrow.svg";
+import bookPlaceholder from "../assets/img/book.png";
 
 interface props {
   livre: any;
@@ -20,7 +21,8 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
     const userId = 1;
 
     try {
-      const res = await fetch("http://localhost:3001/emprunts", {
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+      const res = await fetch(`${API_URL}/emprunts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,11 +36,11 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
       if (res.ok) {
         setShowConfirmationPage(true);
       } else {
-        alert("Une erreur s'est produite lors de la commande.");
+        alert("An error occurred during ordering.");
       }
     } catch (error) {
       console.error(error);
-      alert("Erreur réseau ou serveur.");
+      alert("Network or server error.");
     }
   };
 
@@ -46,7 +48,8 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
     const userId = 1;
 
     try {
-      const res = await fetch("http://localhost:3001/commandes", {
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+      const res = await fetch(`${API_URL}/commandes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,11 +63,11 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
       if (res.ok) {
         setShowConfirmationPage(true);
       } else {
-        alert("Une erreur s'est produite lors de l'emprunt.");
+        alert("An error occurred during borrowing.");
       }
     } catch (error) {
       console.error(error);
-      alert("Erreur réseau ou serveur.");
+      alert("Network or server error.");
     }
   };
 
@@ -75,7 +78,7 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
         onClick={() => setShowProductPage(false)}
       >
         <img className="rotate-180" src={arrowSvg} alt="Arrow" />
-        <p>Retour</p>
+        <p>Back</p>
       </button>
       <div className="lg:flex lg:space-x-14 xl:space-x-20 lg:pt-2">
         <div className="bg-neutral-200 rounded-md flex justify-center items-center lg:w-1/2 h-64 lg:h-96">
@@ -87,19 +90,19 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
         </div>
         <div className="space-y-2 mt-4 lg:mt-0 lg:w-1/2 text-center lg:text-left">
           <p className="text-4xl font-bold">{livre.titre}</p>
-          <p className="font-semibold">Par {livre.auteur}</p>
-          <p className="">Genre : {livre.genre}</p>
+          <p className="font-semibold">By {livre.auteur}</p>
+          <p className="">Genre: {livre.genre}</p>
           {showConfirmationPage ? (
             <div className="flex flex-col items-start h-full pt-10 space-y-4">
               <p className="font-bold text-2xl text-center w-full lg:w-auto">
-                {action} effectué avec succès !
+                {action} successful!
               </p>
               <button
                 className="bg-[#8e80d9] bg-opacity-90 py-2 px-4 rounded-xl text-slate-100 flex justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300 mx-auto lg:mx-0"
                 onClick={() => setShowProductPage(false)}
               >
                 <img className="rotate-180" src={arrowSvg} alt="Arrow" />
-                <p>Revenir à la page des livres</p>
+                <p>Back to books</p>
               </button>
             </div>
           ) : (
@@ -109,22 +112,22 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
                   className="bg-[#8e80d9] bg-opacity-90 py-2 px-4 lg:px-10 xl:px-20 rounded-xl text-slate-100 flex justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300"
                   onClick={() => {
                     handleCommande();
-                    setAction("Commande");
+                    setAction("Order");
                   }}
                 >
-                  <span>Commander</span>
+                  <span>Order</span>
                 </button>
                 <button
                   className="bg-[#80add9] bg-opacity-90 py-2 px-4 lg:px-6 rounded-xl text-slate-100 flex justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300"
                   onClick={() => {
                     handleEmprunt();
-                    setAction("Emprunt");
+                    setAction("Loan");
                   }}
                 >
-                  <span>Emprunter</span>
+                  <span>Borrow</span>
                 </button>
               </div>
-              <p className="text-sm">Aperçu du livre</p>
+              <p className="text-sm">Book Preview</p>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
