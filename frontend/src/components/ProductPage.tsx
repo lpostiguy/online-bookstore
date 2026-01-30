@@ -4,11 +4,11 @@ import arrowSvg from "../assets/svg/arrow.svg";
 import bookPlaceholder from "../assets/img/book.png";
 
 interface props {
-  livre: any;
+  book: any;
   setShowProductPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
+export const ProductPage: React.FC<props> = ({ book, setShowProductPage }) => {
   const [showConfirmationPage, setShowConfirmationPage] =
     useState<boolean>(false);
   const [action, setAction] = useState<string>("");
@@ -22,14 +22,14 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
 
     try {
       const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
-      const res = await fetch(`${API_URL}/emprunts`, {
+      const res = await fetch(`${API_URL}/loans`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           userId: userId,
-          livreId: livre.idLivre,
+          bookId: book.bookId,
         }),
       });
 
@@ -49,14 +49,14 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
 
     try {
       const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
-      const res = await fetch(`${API_URL}/commandes`, {
+      const res = await fetch(`${API_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           userId: userId,
-          livreId: livre.idLivre,
+          bookId: book.bookId,
         }),
       });
 
@@ -89,9 +89,9 @@ export const ProductPage: React.FC<props> = ({ livre, setShowProductPage }) => {
           />
         </div>
         <div className="space-y-2 mt-4 lg:mt-0 lg:w-1/2 text-center lg:text-left">
-          <p className="text-4xl font-bold">{livre.titre}</p>
-          <p className="font-semibold">By {livre.auteur}</p>
-          <p className="">Genre: {livre.genre}</p>
+          <p className="text-4xl font-bold">{book.title}</p>
+          <p className="font-semibold">By {book.author}</p>
+          <p className="">Genre: {book.genre}</p>
           {showConfirmationPage ? (
             <div className="flex flex-col items-start h-full pt-10 space-y-4">
               <p className="font-bold text-2xl text-center w-full lg:w-auto">

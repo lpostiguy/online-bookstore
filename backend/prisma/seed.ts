@@ -3,154 +3,519 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // 1) seed Livre
-  await prisma.livre.createMany({
+  // 1) seed Book
+  await prisma.book.createMany({
     data: [
       // --- Romance ---
-      { titre: 'Le Temps d’un automne', genre: 'Romance', auteur: 'Nicholas Sparks' },
-      { titre: 'Avant toi', genre: 'Romance', auteur: 'Jojo Moyes' },
-      { titre: 'Les pages de notre amour', genre: 'Romance', auteur: 'Nicholas Sparks' },
-      { titre: 'La délicatesse', genre: 'Romance', auteur: 'David Foenkinos' },
+      {
+        title: "A Walk to Remember",
+        genre: "Romance",
+        author: "Nicholas Sparks",
+      },
+      { title: "Me Before You", genre: "Romance", author: "Jojo Moyes" },
+      { title: "The Notebook", genre: "Romance", author: "Nicholas Sparks" },
+      { title: "Delicacy", genre: "Romance", author: "David Foenkinos" },
 
       // --- Fiction ---
-      { titre: 'Le Parfum', genre: 'Fiction', auteur: 'Patrick Süskind' },
-      { titre: 'Shutter Island', genre: 'Fiction', auteur: 'Dennis Lehane' },
-      { titre: 'La Route', genre: 'Fiction', auteur: 'Cormac McCarthy' },
-      { titre: 'Le Nom de la rose', genre: 'Fiction', auteur: 'Umberto Eco' },
+      {
+        title: "Perfume: The Story of a Murderer",
+        genre: "Fiction",
+        author: "Patrick Süskind",
+      },
+      { title: "Shutter Island", genre: "Fiction", author: "Dennis Lehane" },
+      { title: "The Road", genre: "Fiction", author: "Cormac McCarthy" },
+      {
+        title: "The Name of the Rose",
+        genre: "Fiction",
+        author: "Umberto Eco",
+      },
 
       // --- Biographies ---
-      { titre: 'Steve Jobs', genre: 'Biographies', auteur: 'Walter Isaacson' },
-      { titre: 'Becoming', genre: 'Biographies', auteur: 'Michelle Obama' },
-      { titre: 'Elon Musk', genre: 'Biographies', auteur: 'Ashlee Vance' },
-      { titre: 'Moi, Malala', genre: 'Biographies', auteur: 'Malala Yousafzai' },
+      { title: "Steve Jobs", genre: "Biographies", author: "Walter Isaacson" },
+      { title: "Becoming", genre: "Biographies", author: "Michelle Obama" },
+      { title: "Elon Musk", genre: "Biographies", author: "Ashlee Vance" },
+      {
+        title: "I Am Malala",
+        genre: "Biographies",
+        author: "Malala Yousafzai",
+      },
 
-      // --- Poésie ---
-      { titre: 'Le Bateau ivre', genre: 'Poésie', auteur: 'Arthur Rimbaud' },
-      { titre: 'Paroles', genre: 'Poésie', auteur: 'Jacques Prévert' },
-      { titre: 'Le Cornet à dés', genre: 'Poésie', auteur: 'Max Jacob' },
+      // --- Poetry ---
+      { title: "The Drunken Boat", genre: "Poetry", author: "Arthur Rimbaud" },
+      { title: "Paroles", genre: "Poetry", author: "Jacques Prévert" },
+      { title: "The Dice Cup", genre: "Poetry", author: "Max Jacob" },
 
-      // --- Bandes dessinées ---
-      { titre: 'Blake et Mortimer', genre: 'Bandes dessinées', auteur: 'Edgar P. Jacobs' },
-      { titre: 'Lucky Luke', genre: 'Bandes dessinées', auteur: 'Morris' },
-      { titre: 'Les Schtroumpfs', genre: 'Bandes dessinées', auteur: 'Peyo' },
-      { titre: 'Garfield', genre: 'Bandes dessinées', auteur: 'Jim Davis' },
+      // --- Comics ---
+      {
+        title: "Blake and Mortimer",
+        genre: "Comics",
+        author: "Edgar P. Jacobs",
+      },
+      { title: "Lucky Luke", genre: "Comics", author: "Morris" },
+      { title: "The Smurfs", genre: "Comics", author: "Peyo" },
+      { title: "Garfield", genre: "Comics", author: "Jim Davis" },
 
-      // --- Cuisine ---
-      { titre: 'Fait maison', genre: 'Cuisine', auteur: 'Cyril Lignac' },
-      { titre: 'Cuisine végétarienne', genre: 'Cuisine', auteur: 'Delphine Pocard' },
-      { titre: 'Pâtisserie !', genre: 'Cuisine', auteur: 'Christophe Felder' },
-      { titre: 'La cuisine pour les nuls', genre: 'Cuisine', auteur: 'Bryan Miller' },
+      // --- Cooking ---
+      { title: "Home Made", genre: "Cooking", author: "Cyril Lignac" },
+      {
+        title: "Vegetarian Cooking",
+        genre: "Cooking",
+        author: "Delphine Pocard",
+      },
+      { title: "Patisserie!", genre: "Cooking", author: "Christophe Felder" },
+      {
+        title: "Cooking for Dummies",
+        genre: "Cooking",
+        author: "Bryan Miller",
+      },
 
-      // --- Histoire ---
-      { titre: 'L’art de la guerre', genre: 'Histoire', auteur: 'Sun Tzu' },
-      { titre: 'Les grandes dates de l’histoire de France', genre: 'Histoire', auteur: 'André Castelot' },
-      { titre: 'Napoléon', genre: 'Histoire', auteur: 'André Castelot' },
-      { titre: 'La Seconde Guerre mondiale', genre: 'Histoire', auteur: 'Winston Churchill' },
+      // --- History ---
+      { title: "The Art of War", genre: "History", author: "Sun Tzu" },
+      {
+        title: "Great Dates in French History",
+        genre: "History",
+        author: "André Castelot",
+      },
+      { title: "Napoleon", genre: "History", author: "André Castelot" },
+      {
+        title: "The Second World War",
+        genre: "History",
+        author: "Winston Churchill",
+      },
 
-      // --- Mélange (existant déjà) ---
-      { titre: 'Le Petit Prince', genre: 'Fiction', auteur: 'Antoine de Saint-Exupéry' },
-      { titre: 'Le Seigneur des Anneaux', genre: 'Fiction', auteur: 'J.R.R. Tolkien' },
-      { titre: 'Harry Potter à l’école des sorciers', genre: 'Fiction', auteur: 'J.K. Rowling' },
-      { titre: 'Dune', genre: 'Fiction', auteur: 'Frank Herbert' },
-      { titre: 'Crime et Châtiment', genre: 'Fiction', auteur: 'Fiodor Dostoïevski' },
-      { titre: 'Les Misérables', genre: 'Fiction', auteur: 'Victor Hugo' },
-      { titre: 'Le Hobbit', genre: 'Fiction', auteur: 'J.R.R. Tolkien' },
-      { titre: 'Frankenstein', genre: 'Fiction', auteur: 'Mary Shelley' },
-      { titre: 'To Kill a Mockingbird', genre: 'Fiction', auteur: 'Harper Lee' },
-      { titre: 'L’Attrape-cœurs', genre: 'Fiction', auteur: 'J. D. Salinger' },
-      { titre: 'Ne tirez pas sur l’oiseau moqueur', genre: 'Fiction', auteur: 'Harper Lee' },
-      { titre: 'Fahrenheit 451', genre: 'Fiction', auteur: 'Ray Bradbury' },
+      // --- Mixed (existing) ---
+      {
+        title: "The Little Prince",
+        genre: "Fiction",
+        author: "Antoine de Saint-Exupéry",
+      },
+      {
+        title: "The Lord of the Rings",
+        genre: "Fiction",
+        author: "J.R.R. Tolkien",
+      },
+      {
+        title: "Harry Potter and the Philosopher's Stone",
+        genre: "Fiction",
+        author: "J.K. Rowling",
+      },
+      { title: "Dune", genre: "Fiction", author: "Frank Herbert" },
+      {
+        title: "Crime and Punishment",
+        genre: "Fiction",
+        author: "Fyodor Dostoevsky",
+      },
+      { title: "Les Misérables", genre: "Fiction", author: "Victor Hugo" },
+      { title: "The Hobbit", genre: "Fiction", author: "J.R.R. Tolkien" },
+      { title: "Frankenstein", genre: "Fiction", author: "Mary Shelley" },
+      {
+        title: "To Kill a Mockingbird",
+        genre: "Fiction",
+        author: "Harper Lee",
+      },
+      {
+        title: "The Catcher in the Rye",
+        genre: "Fiction",
+        author: "J. D. Salinger",
+      },
+      { title: "Go Set a Watchman", genre: "Fiction", author: "Harper Lee" },
+      { title: "Fahrenheit 451", genre: "Fiction", author: "Ray Bradbury" },
     ],
   });
 
-  // 2) seed Adherent
-  await prisma.adherent.createMany({
+  // 2) seed Member
+  await prisma.member.createMany({
     data: [
-      { nom: 'Dupont', rue: 'Rue des Fleurs', no: '12', ville: 'Montréal', cPost: 'H2X1Y4' },
-      { nom: 'Martin', rue: 'Boulevard St‑Laurent', no: '345', ville: 'Montréal', cPost: 'H2X3T1' },
-      { nom: 'Tremblay', rue: 'Avenue du Parc', no: '78', ville: 'Québec', cPost: 'G1R2L9' },
-      { nom: 'Roy', rue: 'Rue Sainte‑Catherine', no: '210', ville: 'Montréal', cPost: 'H3B1A7' },
-      { nom: 'Gagnon', rue: 'Chemin du Roy', no: '5', ville: 'Trois‑Rivières', cPost: 'G9A1P4' },
-      { nom: 'Bouchard', rue: 'Rue Notre‑Dame', no: '99', ville: 'Laval', cPost: 'H7N5P1' },
-      { nom: 'Fournier', rue: 'Rue Principale', no: '150', ville: 'Québec', cPost: 'G1V4L2' },
-      { nom: 'Gauthier', rue: 'Rue Victoria', no: '22', ville: 'Montréal', cPost: 'H2Y2E2' },
-      { nom: 'Leclerc', rue: 'Boulevard Taschereau', no: '310', ville: 'Longueuil', cPost: 'J4L2Z8' },
-      { nom: 'Pelletier', rue: 'Rue Wellington', no: '47', ville: 'Sherbrooke', cPost: 'J1H2E8' },
-      { nom: 'Moreau', rue: 'Rue Saint‑Jean', no: '88', ville: 'Québec', cPost: 'G1R1P7' },
-      { nom: 'Lambert', rue: 'Rue de la Commune', no: '60', ville: 'Montréal', cPost: 'H2Y2E3' },
+      {
+        name: "Smith",
+        street: "Flower Street",
+        streetNumber: "12",
+        city: "Montreal",
+        zipCode: "H2X1Y4",
+      },
+      {
+        name: "Martin",
+        street: "St-Laurent Blvd",
+        streetNumber: "345",
+        city: "Montreal",
+        zipCode: "H2X3T1",
+      },
+      {
+        name: "Johnson",
+        street: "Park Avenue",
+        streetNumber: "78",
+        city: "Quebec",
+        zipCode: "G1R2L9",
+      },
+      {
+        name: "King",
+        street: "St-Catherine Street",
+        streetNumber: "210",
+        city: "Montreal",
+        zipCode: "H3B1A7",
+      },
+      {
+        name: "Wilson",
+        street: "King's Road",
+        streetNumber: "5",
+        city: "Trois-Rivieres",
+        zipCode: "G9A1P4",
+      },
+      {
+        name: "Miller",
+        street: "Notre-Dame Street",
+        streetNumber: "99",
+        city: "Laval",
+        zipCode: "H7N5P1",
+      },
+      {
+        name: "Taylor",
+        street: "Main Street",
+        streetNumber: "150",
+        city: "Quebec",
+        zipCode: "G1V4L2",
+      },
+      {
+        name: "Anderson",
+        street: "Victoria Street",
+        streetNumber: "22",
+        city: "Montreal",
+        zipCode: "H2Y2E2",
+      },
+      {
+        name: "Thomas",
+        street: "Taschereau Blvd",
+        streetNumber: "310",
+        city: "Longueuil",
+        zipCode: "J4L2Z8",
+      },
+      {
+        name: "White",
+        street: "Wellington Street",
+        streetNumber: "47",
+        city: "Sherbrooke",
+        zipCode: "J1H2E8",
+      },
+      {
+        name: "Moore",
+        street: "St-John Street",
+        streetNumber: "88",
+        city: "Quebec",
+        zipCode: "G1R1P7",
+      },
+      {
+        name: "Clark",
+        street: "Commune Street",
+        streetNumber: "60",
+        city: "Montreal",
+        zipCode: "H2Y2E3",
+      },
     ],
   });
 
-  // 3) seed Emprunt
-  await prisma.emprunt.createMany({
+  // 3) seed Loan
+  await prisma.loan.createMany({
     data: [
-      // Pour l’adhérent 1, 5 emprunts
-      { idLivre: 1, idAdherent: 1, dateEmprunt: new Date('2025-01-01'), dateRetour: new Date('2025-01-15') },
-      { idLivre: 2, idAdherent: 1, dateEmprunt: new Date('2025-01-10'), dateRetour: new Date('2025-01-24') },
-      { idLivre: 3, idAdherent: 1, dateEmprunt: new Date('2025-02-01'), dateRetour: new Date('2025-02-15') },
-      { idLivre: 4, idAdherent: 1, dateEmprunt: new Date('2025-02-20'), dateRetour: new Date('2025-03-06') },
-      { idLivre: 5, idAdherent: 1, dateEmprunt: new Date('2025-03-10'), dateRetour: new Date('2025-03-24') },
+      {
+        bookId: 1,
+        memberId: 1,
+        loanDate: new Date("2025-01-01"),
+        dueDate: new Date("2025-01-15"),
+      },
+      {
+        bookId: 2,
+        memberId: 1,
+        loanDate: new Date("2025-01-10"),
+        dueDate: new Date("2025-01-24"),
+      },
+      {
+        bookId: 3,
+        memberId: 1,
+        loanDate: new Date("2025-02-01"),
+        dueDate: new Date("2025-02-15"),
+      },
+      {
+        bookId: 4,
+        memberId: 1,
+        loanDate: new Date("2025-02-20"),
+        dueDate: new Date("2025-03-06"),
+      },
+      {
+        bookId: 5,
+        memberId: 1,
+        loanDate: new Date("2025-03-10"),
+        dueDate: new Date("2025-03-24"),
+      },
 
-      // Pour l’adhérent 2, 8 emprunts
-      { idLivre: 6, idAdherent: 2, dateEmprunt: new Date('2025-01-05'), dateRetour: new Date('2025-01-19') },
-      { idLivre: 7, idAdherent: 2, dateEmprunt: new Date('2025-01-15'), dateRetour: new Date('2025-01-29') },
-      { idLivre: 8, idAdherent: 2, dateEmprunt: new Date('2025-02-05'), dateRetour: new Date('2025-02-19') },
-      { idLivre: 9, idAdherent: 2, dateEmprunt: new Date('2025-02-15'), dateRetour: new Date('2025-03-01') },
-      { idLivre: 10, idAdherent: 2, dateEmprunt: new Date('2025-03-01'), dateRetour: new Date('2025-03-15') },
-      { idLivre: 11, idAdherent: 2, dateEmprunt: new Date('2025-03-15'), dateRetour: new Date('2025-03-29') },
-      { idLivre: 12, idAdherent: 2, dateEmprunt: new Date('2025-04-01'), dateRetour: new Date('2025-04-15') },
-      { idLivre: 1, idAdherent: 2, dateEmprunt: new Date('2025-04-10'), dateRetour: new Date('2025-04-24') },
+      {
+        bookId: 6,
+        memberId: 2,
+        loanDate: new Date("2025-01-05"),
+        dueDate: new Date("2025-01-19"),
+      },
+      {
+        bookId: 7,
+        memberId: 2,
+        loanDate: new Date("2025-01-15"),
+        dueDate: new Date("2025-01-29"),
+      },
+      {
+        bookId: 8,
+        memberId: 2,
+        loanDate: new Date("2025-02-05"),
+        dueDate: new Date("2025-02-19"),
+      },
+      {
+        bookId: 9,
+        memberId: 2,
+        loanDate: new Date("2025-02-15"),
+        dueDate: new Date("2025-03-01"),
+      },
+      {
+        bookId: 10,
+        memberId: 2,
+        loanDate: new Date("2025-03-01"),
+        dueDate: new Date("2025-03-15"),
+      },
+      {
+        bookId: 11,
+        memberId: 2,
+        loanDate: new Date("2025-03-15"),
+        dueDate: new Date("2025-03-29"),
+      },
+      {
+        bookId: 12,
+        memberId: 2,
+        loanDate: new Date("2025-04-01"),
+        dueDate: new Date("2025-04-15"),
+      },
+      {
+        bookId: 1,
+        memberId: 2,
+        loanDate: new Date("2025-04-10"),
+        dueDate: new Date("2025-04-24"),
+      },
 
-      // Pour l’adhérent 3, 4 emprunts
-      { idLivre: 2, idAdherent: 3, dateEmprunt: new Date('2025-01-12'), dateRetour: new Date('2025-01-26') },
-      { idLivre: 4, idAdherent: 3, dateEmprunt: new Date('2025-02-10'), dateRetour: new Date('2025-02-24') },
-      { idLivre: 6, idAdherent: 3, dateEmprunt: new Date('2025-03-05'), dateRetour: new Date('2025-03-19') },
-      { idLivre: 8, idAdherent: 3, dateEmprunt: new Date('2025-03-20'), dateRetour: new Date('2025-04-03') },
+      {
+        bookId: 2,
+        memberId: 3,
+        loanDate: new Date("2025-01-12"),
+        dueDate: new Date("2025-01-26"),
+      },
+      {
+        bookId: 4,
+        memberId: 3,
+        loanDate: new Date("2025-02-10"),
+        dueDate: new Date("2025-02-24"),
+      },
+      {
+        bookId: 6,
+        memberId: 3,
+        loanDate: new Date("2025-03-05"),
+        dueDate: new Date("2025-03-19"),
+      },
+      {
+        bookId: 8,
+        memberId: 3,
+        loanDate: new Date("2025-03-20"),
+        dueDate: new Date("2025-04-03"),
+      },
 
-      // Pour l’adhérent 4, 6 emprunts
-      { idLivre: 3, idAdherent: 4, dateEmprunt: new Date('2025-01-20'), dateRetour: new Date('2025-02-03') },
-      { idLivre: 5, idAdherent: 4, dateEmprunt: new Date('2025-02-01'), dateRetour: new Date('2025-02-15') },
-      { idLivre: 7, idAdherent: 4, dateEmprunt: new Date('2025-02-18'), dateRetour: new Date('2025-03-04') },
-      { idLivre: 9, idAdherent: 4, dateEmprunt: new Date('2025-03-01'), dateRetour: new Date('2025-03-15') },
-      { idLivre: 11, idAdherent: 4, dateEmprunt: new Date('2025-03-15'), dateRetour: new Date('2025-03-29') },
-      { idLivre: 2, idAdherent: 4, dateEmprunt: new Date('2025-04-05'), dateRetour: new Date('2025-04-19') },
+      {
+        bookId: 3,
+        memberId: 4,
+        loanDate: new Date("2025-01-20"),
+        dueDate: new Date("2025-02-03"),
+      },
+      {
+        bookId: 5,
+        memberId: 4,
+        loanDate: new Date("2025-02-01"),
+        dueDate: new Date("2025-02-15"),
+      },
+      {
+        bookId: 7,
+        memberId: 4,
+        loanDate: new Date("2025-02-18"),
+        dueDate: new Date("2025-03-04"),
+      },
+      {
+        bookId: 9,
+        memberId: 4,
+        loanDate: new Date("2025-03-01"),
+        dueDate: new Date("2025-03-15"),
+      },
+      {
+        bookId: 11,
+        memberId: 4,
+        loanDate: new Date("2025-03-15"),
+        dueDate: new Date("2025-03-29"),
+      },
+      {
+        bookId: 2,
+        memberId: 4,
+        loanDate: new Date("2025-04-05"),
+        dueDate: new Date("2025-04-19"),
+      },
 
-      // Pour l’adhérent 5, 3 emprunts
-      { idLivre: 10, idAdherent: 5, dateEmprunt: new Date('2025-02-12'), dateRetour: new Date('2025-02-26') },
-      { idLivre: 12, idAdherent: 5, dateEmprunt: new Date('2025-03-10'), dateRetour: new Date('2025-03-24') },
-      { idLivre: 1, idAdherent: 5, dateEmprunt: new Date('2025-03-25'), dateRetour: new Date('2025-04-08') },
+      {
+        bookId: 10,
+        memberId: 5,
+        loanDate: new Date("2025-02-12"),
+        dueDate: new Date("2025-02-26"),
+      },
+      {
+        bookId: 12,
+        memberId: 5,
+        loanDate: new Date("2025-03-10"),
+        dueDate: new Date("2025-03-24"),
+      },
+      {
+        bookId: 1,
+        memberId: 5,
+        loanDate: new Date("2025-03-25"),
+        dueDate: new Date("2025-04-08"),
+      },
 
-      // Ajout de quelques emprunts croisés pour pimenter
-      { idLivre: 5, idAdherent: 3, dateEmprunt: new Date('2025-04-01'), dateRetour: new Date('2025-04-15') },
-      { idLivre: 8, idAdherent: 1, dateEmprunt: new Date('2025-04-10'), dateRetour: new Date('2025-04-24') },
-      { idLivre: 3, idAdherent: 2, dateEmprunt: new Date('2025-04-12'), dateRetour: new Date('2025-04-26') },
+      {
+        bookId: 5,
+        memberId: 3,
+        loanDate: new Date("2025-04-01"),
+        dueDate: new Date("2025-04-15"),
+      },
+      {
+        bookId: 8,
+        memberId: 1,
+        loanDate: new Date("2025-04-10"),
+        dueDate: new Date("2025-04-24"),
+      },
+      {
+        bookId: 3,
+        memberId: 2,
+        loanDate: new Date("2025-04-12"),
+        dueDate: new Date("2025-04-26"),
+      },
     ],
   });
 
-  // 4) seed Commande
-  await prisma.commande.createMany({
+  // 4) seed Order
+  await prisma.order.createMany({
     data: [
-      // commandes variées, certains livres commandés plusieurs fois
-      { idLivre: 1, idAdherent: 1, dateCommande: new Date('2025-01-05'), etatCommande: 'expédiée' },
-      { idLivre: 2, idAdherent: 1, dateCommande: new Date('2025-01-15'), etatCommande: 'livrée' },
-      { idLivre: 3, idAdherent: 2, dateCommande: new Date('2025-02-01'), etatCommande: 'en attente' },
-      { idLivre: 4, idAdherent: 3, dateCommande: new Date('2025-02-10'), etatCommande: 'annulée' },
-      { idLivre: 5, idAdherent: 4, dateCommande: new Date('2025-02-20'), etatCommande: 'expédiée' },
-      { idLivre: 6, idAdherent: 5, dateCommande: new Date('2025-03-01'), etatCommande: 'livrée' },
-      { idLivre: 7, idAdherent: 6, dateCommande: new Date('2025-03-10'), etatCommande: 'expédiée' },
-      { idLivre: 8, idAdherent: 7, dateCommande: new Date('2025-03-15'), etatCommande: 'en attente' },
-      { idLivre: 9, idAdherent: 8, dateCommande: new Date('2025-03-22'), etatCommande: 'livrée' },
-      { idLivre: 10, idAdherent: 9, dateCommande: new Date('2025-03-25'), etatCommande: 'expédiée' },
-      { idLivre: 11, idAdherent: 10, dateCommande: new Date('2025-03-27'), etatCommande: 'annulée' },
-      { idLivre: 12, idAdherent: 11, dateCommande: new Date('2025-03-29'), etatCommande: 'livrée' },
-      // quelques re‑commandes de certains livres
-      { idLivre: 1, idAdherent: 2, dateCommande: new Date('2025-04-01'), etatCommande: 'en attente' },
-      { idLivre: 5, idAdherent: 3, dateCommande: new Date('2025-04-05'), etatCommande: 'expédiée' },
-      { idLivre: 2, idAdherent: 4, dateCommande: new Date('2025-04-10'), etatCommande: 'livrée' },
-      { idLivre: 3, idAdherent: 5, dateCommande: new Date('2025-04-12'), etatCommande: 'en attente' },
-      { idLivre: 7, idAdherent: 6, dateCommande: new Date('2025-04-15'), etatCommande: 'expédiée' },
-      { idLivre: 8, idAdherent: 7, dateCommande: new Date('2025-04-18'), etatCommande: 'livrée' },
-      { idLivre: 9, idAdherent: 8, dateCommande: new Date('2025-04-20'), etatCommande: 'expédiée' },
+      {
+        bookId: 1,
+        memberId: 1,
+        orderDate: new Date("2025-01-05"),
+        status: "Shipped",
+      },
+      {
+        bookId: 2,
+        memberId: 1,
+        orderDate: new Date("2025-01-15"),
+        status: "Delivered",
+      },
+      {
+        bookId: 3,
+        memberId: 2,
+        orderDate: new Date("2025-02-01"),
+        status: "Pending",
+      },
+      {
+        bookId: 4,
+        memberId: 3,
+        orderDate: new Date("2025-02-10"),
+        status: "Cancelled",
+      },
+      {
+        bookId: 5,
+        memberId: 4,
+        orderDate: new Date("2025-02-20"),
+        status: "Shipped",
+      },
+      {
+        bookId: 6,
+        memberId: 5,
+        orderDate: new Date("2025-03-01"),
+        status: "Delivered",
+      },
+      {
+        bookId: 7,
+        memberId: 6,
+        orderDate: new Date("2025-03-10"),
+        status: "Shipped",
+      },
+      {
+        bookId: 8,
+        memberId: 7,
+        orderDate: new Date("2025-03-15"),
+        status: "Pending",
+      },
+      {
+        bookId: 9,
+        memberId: 8,
+        orderDate: new Date("2025-03-22"),
+        status: "Delivered",
+      },
+      {
+        bookId: 10,
+        memberId: 9,
+        orderDate: new Date("2025-03-25"),
+        status: "Shipped",
+      },
+      {
+        bookId: 11,
+        memberId: 10,
+        orderDate: new Date("2025-03-27"),
+        status: "Cancelled",
+      },
+      {
+        bookId: 12,
+        memberId: 11,
+        orderDate: new Date("2025-03-29"),
+        status: "Delivered",
+      },
+
+      {
+        bookId: 1,
+        memberId: 2,
+        orderDate: new Date("2025-04-01"),
+        status: "Pending",
+      },
+      {
+        bookId: 5,
+        memberId: 3,
+        orderDate: new Date("2025-04-05"),
+        status: "Shipped",
+      },
+      {
+        bookId: 2,
+        memberId: 4,
+        orderDate: new Date("2025-04-10"),
+        status: "Delivered",
+      },
+      {
+        bookId: 3,
+        memberId: 5,
+        orderDate: new Date("2025-04-12"),
+        status: "Pending",
+      },
+      {
+        bookId: 7,
+        memberId: 6,
+        orderDate: new Date("2025-04-15"),
+        status: "Shipped",
+      },
+      {
+        bookId: 8,
+        memberId: 7,
+        orderDate: new Date("2025-04-18"),
+        status: "Delivered",
+      },
+      {
+        bookId: 9,
+        memberId: 8,
+        orderDate: new Date("2025-04-20"),
+        status: "Shipped",
+      },
     ],
   });
 }

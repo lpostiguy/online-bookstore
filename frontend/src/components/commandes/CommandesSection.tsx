@@ -3,31 +3,16 @@ import React, { useEffect, useState } from "react";
 import bookPlaceholder from "../../assets/img/book.png";
 
 export const CommandesSection: React.FC = () => {
-  const [commandes, setCommandes] = useState<any[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
 
   useEffect(() => {
     const userId = 1;
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-    fetch(`${API_URL}/mes-commandes?userId=${userId}`)
+    fetch(`${API_URL}/my-orders?userId=${userId}`)
       .then((res) => res.json())
-      .then((data) => setCommandes(data));
+      .then((data) => setOrders(data));
   }, []);
-
-  const translateStatus = (status: string) => {
-    switch (status) {
-      case "expédiée":
-        return "Shipped";
-      case "livrée":
-        return "Delivered";
-      case "en attente":
-        return "Pending";
-      case "annulée":
-        return "Cancelled";
-      default:
-        return status;
-    }
-  };
 
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
@@ -37,7 +22,7 @@ export const CommandesSection: React.FC = () => {
         </h2>
       </div>
       <div className="mt-4">
-        {commandes.map((commandes, index) => (
+        {orders.map((order, index) => (
           <div
             key={index}
             className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
@@ -49,17 +34,15 @@ export const CommandesSection: React.FC = () => {
                 alt="Place Holder"
               />
               <p className="line-clamp-1 text-left">
-                {commandes.livre.titre}, {commandes.livre.auteur}
+                {order.book.title}, {order.book.author}
               </p>
             </div>
             <div className="space-y-4">
               <p className="line-clamp-1">
                 Order Date:{" "}
-                {new Date(commandes.dateCommande).toLocaleDateString("en-US")}
+                {new Date(order.orderDate).toLocaleDateString("en-US")}
               </p>
-              <p className="line-clamp-1">
-                Order Status: {translateStatus(commandes.etatCommande)}
-              </p>
+              <p className="line-clamp-1">Order Status: {order.status}</p>
             </div>
           </div>
         ))}

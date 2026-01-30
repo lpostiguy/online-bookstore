@@ -15,21 +15,21 @@ export const RecommendedSection: React.FC<Props> = ({
   setShowProductPage,
 }) => {
   const [selectedBook, setSelectedBook] = useState<number>();
-  const [livres, setLivres] = useState<any[]>([]);
+  const [books, setBooks] = useState<any[]>([]);
 
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL || "http://localhost:3001"}/stats/borrow-count-per-book`,
     )
       .then((res) => res.json())
-      .then((data) => setLivres(data));
+      .then((data) => setBooks(data));
   }, []);
 
   return (
     <>
       {showProductPage ? (
         <ProductPage
-          livre={livres[selectedBook ? selectedBook : 0]}
+          book={books[selectedBook ? selectedBook : 0]}
           setShowProductPage={setShowProductPage}
         />
       ) : (
@@ -47,7 +47,7 @@ export const RecommendedSection: React.FC<Props> = ({
             </Link>
           </div>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center">
-            {livres.slice(0, 12).map((livre, index) => (
+            {books.slice(0, 12).map((book, index) => (
               <button
                 onClick={() => {
                   setShowProductPage(true);
@@ -61,7 +61,7 @@ export const RecommendedSection: React.FC<Props> = ({
                   src={bookPlaceholder}
                   alt="Place Holder"
                 />
-                <p className="line-clamp-1">{livre.titre}</p>
+                <p className="line-clamp-1">{book.title}</p>
               </button>
             ))}
           </div>

@@ -36,13 +36,13 @@ export const Header: React.FC = () => {
             <div className="bg-slate-200 w-40 absolute mt-32 rounded-lg overflow-hidden">
               <Link
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
-                to="/emprunts"
+                to="/loans"
               >
                 My Loans
               </Link>
               <Link
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
-                to="/commandes"
+                to="/orders"
               >
                 My Orders
               </Link>
@@ -63,9 +63,9 @@ export const Header: React.FC = () => {
             label="Explore"
           />
         </Link>
-        <Link to={"/statistiques"} draggable={false}>
+        <Link to={"/statistics"} draggable={false}>
           <DrawerMenuButton
-            active={location.pathname === "/statistiques"}
+            active={location.pathname === "/statistics"}
             label="Statistics"
           />
         </Link>

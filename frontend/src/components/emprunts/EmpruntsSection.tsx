@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import bookPlaceholder from "../../assets/img/book.png";
 
 export const EmpruntsSection: React.FC = () => {
-  const [emprunts, setEmprunts] = useState<any[]>([]);
+  const [loans, setLoans] = useState<any[]>([]);
 
   useEffect(() => {
     const userId = 1;
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-    fetch(`${API_URL}/mes-emprunts?userId=${userId}`)
+    fetch(`${API_URL}/my-loans?userId=${userId}`)
       .then((res) => res.json())
-      .then((data) => setEmprunts(data));
+      .then((data) => setLoans(data));
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export const EmpruntsSection: React.FC = () => {
         </h2>
       </div>
       <div className="mt-4">
-        {emprunts.map((emprunt, index) => (
+        {loans.map((loan, index) => (
           <div
             key={index}
             className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
@@ -34,17 +34,16 @@ export const EmpruntsSection: React.FC = () => {
                 alt="Place Holder"
               />
               <p className="line-clamp-1 text-left">
-                {emprunt.livre.titre}, {emprunt.livre.auteur}
+                {loan.book.title}, {loan.book.author}
               </p>
             </div>
             <div className="space-y-4">
               <p className="line-clamp-1">
-                Loan Date:{" "}
-                {new Date(emprunt.dateEmprunt).toLocaleDateString("en-US")}
+                Loan Date: {new Date(loan.loanDate).toLocaleDateString("en-US")}
               </p>
               <p className="line-clamp-1">
                 Return Date:{" "}
-                {new Date(emprunt.dateRetour).toLocaleDateString("en-US")}
+                {new Date(loan.dueDate).toLocaleDateString("en-US")}
               </p>
             </div>
           </div>

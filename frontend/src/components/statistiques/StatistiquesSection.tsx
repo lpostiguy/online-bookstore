@@ -4,24 +4,24 @@ import bookPlaceholder from "../../assets/img/book.png";
 import profilePlaceholderSvg from "../../assets/svg/profile.svg";
 
 export const StatistiquesSection: React.FC = () => {
-  const [commandes, setCommandes] = useState<any[]>([]);
-  const [emprunts, setEmprunts] = useState<any[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loans, setLoans] = useState<any[]>([]);
   const [borrowCounts, setBorrowCounts] = useState<any[]>([]);
   const [topReaders, setTopReaders] = useState<any[]>([]);
-  const [view, setView] = useState<string>("Commande");
+  const [view, setView] = useState<string>("Order");
 
   useEffect(() => {
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
-    fetch(`${API_URL}/commandes`)
+    fetch(`${API_URL}/orders`)
       .then((res) => res.json())
-      .then((data) => setCommandes(data));
+      .then((data) => setOrders(data));
   }, []);
 
   useEffect(() => {
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
-    fetch(`${API_URL}/emprunts`)
+    fetch(`${API_URL}/loans`)
       .then((res) => res.json())
-      .then((data) => setEmprunts(data));
+      .then((data) => setLoans(data));
   }, []);
 
   useEffect(() => {
@@ -38,21 +38,6 @@ export const StatistiquesSection: React.FC = () => {
       .then((data) => setTopReaders(data));
   }, []);
 
-  const translateStatus = (status: string) => {
-    switch (status) {
-      case "expédiée":
-        return "Shipped";
-      case "livrée":
-        return "Delivered";
-      case "en attente":
-        return "Pending";
-      case "annulée":
-        return "Cancelled";
-      default:
-        return status;
-    }
-  };
-
   return (
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
@@ -61,49 +46,49 @@ export const StatistiquesSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6 items-stretch">
         <button
           className={`${
-            view === "Commande"
+            view === "Order"
               ? "bg-[#8e80d9] bg-opacity-90 text-slate-100"
               : "bg-slate-200 text-slate-800 hover:bg-slate-300"
           } p-4 rounded-xl transition duration-300 ease-in-out`}
-          onClick={() => setView("Commande")}
+          onClick={() => setView("Order")}
         >
           View all orders
         </button>
         <button
           className={`${
-            view === "Emprunt"
+            view === "Loan"
               ? "bg-[#8e80d9] bg-opacity-90 text-slate-100"
               : "bg-slate-200 text-slate-800 hover:bg-slate-300"
           } p-4 rounded-xl transition duration-300 ease-in-out`}
-          onClick={() => setView("Emprunt")}
+          onClick={() => setView("Loan")}
         >
           View all loans
         </button>
         <button
           className={`${
-            view === "EmpruntParLivre"
+            view === "BookLoans"
               ? "bg-[#8e80d9] bg-opacity-90 text-slate-100"
               : "bg-slate-200 text-slate-800 hover:bg-slate-300"
           } p-4 rounded-xl transition duration-300 ease-in-out`}
-          onClick={() => setView("EmpruntParLivre")}
+          onClick={() => setView("BookLoans")}
         >
           <p>View loan count per book (descending)</p>
         </button>
         <button
           className={`${
-            view === "TopAdhérents"
+            view === "TopMembers"
               ? "bg-[#8e80d9] bg-opacity-90 text-slate-100"
               : "bg-slate-200 text-slate-800 hover:bg-slate-300"
           } p-4 rounded-xl transition duration-300 ease-in-out`}
-          onClick={() => setView("TopAdhérents")}
+          onClick={() => setView("TopMembers")}
         >
           <p>View top 5 active members</p>
         </button>
       </div>
 
-      {view === "Commande" && (
+      {view === "Order" && (
         <div className="mt-4">
-          {commandes.map((commande, index) => (
+          {orders.map((order, index) => (
             <div
               key={index}
               className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
@@ -115,16 +100,16 @@ export const StatistiquesSection: React.FC = () => {
                   alt="Book"
                 />
                 <p className="text-center lg:text-left">
-                  {commande.livre.titre}, {commande.livre.auteur}
+                  {order.book.title}, {order.book.author}
                 </p>
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
                   Order Date:{" "}
-                  {new Date(commande.dateCommande).toLocaleDateString("en-US")}
+                  {new Date(order.orderDate).toLocaleDateString("en-US")}
                 </p>
                 <p className="text-center lg:text-left">
-                  Order Status: {translateStatus(commande.etatCommande)}
+                  Order Status: {order.status}
                 </p>
               </div>
             </div>
@@ -132,9 +117,9 @@ export const StatistiquesSection: React.FC = () => {
         </div>
       )}
 
-      {view === "Emprunt" && (
+      {view === "Loan" && (
         <div className="mt-4">
-          {emprunts.map((emprunt, index) => (
+          {loans.map((loan, index) => (
             <div
               key={index}
               className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
@@ -146,20 +131,20 @@ export const StatistiquesSection: React.FC = () => {
                   alt="Book"
                 />
                 <p className="text-left">
-                  {emprunt.livre.titre}, {emprunt.livre.auteur}
+                  {loan.book.title}, {loan.book.author}
                 </p>
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Member ID: {emprunt.idAdherent}
+                  Member ID: {loan.memberId}
                 </p>
                 <p className="text-center lg:text-left">
                   Loan Date:{" "}
-                  {new Date(emprunt.dateEmprunt).toLocaleDateString("en-US")}
+                  {new Date(loan.loanDate).toLocaleDateString("en-US")}
                 </p>
                 <p className="text-center lg:text-left">
                   Return Date:{" "}
-                  {new Date(emprunt.dateRetour).toLocaleDateString("en-US")}
+                  {new Date(loan.dueDate).toLocaleDateString("en-US")}
                 </p>
               </div>
             </div>
@@ -167,7 +152,7 @@ export const StatistiquesSection: React.FC = () => {
         </div>
       )}
 
-      {view === "EmpruntParLivre" && (
+      {view === "BookLoans" && (
         <div className="mt-4">
           {borrowCounts.map((borrowCount, index) => (
             <div
@@ -182,13 +167,13 @@ export const StatistiquesSection: React.FC = () => {
                 />
                 <div className="space-y-1">
                   <p className="text-center lg:text-left">
-                    Book Title: {borrowCount.titre}
+                    Book Title: {borrowCount.title}
                   </p>
                   <p className="text-center lg:text-left">
-                    Author: {borrowCount.auteur}
+                    Author: {borrowCount.author}
                   </p>
                   <p className="text-center lg:text-left">
-                    Book ID: {borrowCount.idLivre}
+                    Book ID: {borrowCount.bookId}
                   </p>
                 </div>
               </div>
@@ -201,9 +186,9 @@ export const StatistiquesSection: React.FC = () => {
           ))}
         </div>
       )}
-      {view === "TopAdhérents" && (
+      {view === "TopMembers" && (
         <div className="mt-4">
-          {topReaders.map((topReaders, index) => (
+          {topReaders.map((topReader, index) => (
             <div
               key={index}
               className="bg-white rounded-xl p-4 px-10 shadow-sm flex flex-col lg:flex-row justify-center lg:justify-between items-center text-center m-2"
@@ -216,16 +201,16 @@ export const StatistiquesSection: React.FC = () => {
                 />
                 <div className="flex lg:flex-col space-x-4 lg:space-x-0">
                   <p className="text-center lg:text-left">
-                    Name: {topReaders.nom}
+                    Name: {topReader.name}
                   </p>
                   <p className="text-center lg:text-left">
-                    ID: {topReaders.idAdherent}
+                    ID: {topReader.memberId}
                   </p>
                 </div>
               </div>
               <div className="space-y-4">
                 <p className="text-center lg:text-left">
-                  Loan Count: {topReaders.borrowCount}
+                  Loan Count: {topReader.borrowCount}
                 </p>
               </div>
             </div>

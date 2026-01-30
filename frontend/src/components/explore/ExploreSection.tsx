@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { CategoriesSection } from "./CategoriesSection";
 import { ProductPage } from "../ProductPage";
 import bookPlaceholder from "../../assets/img/book.png";
@@ -12,26 +13,26 @@ export const ExploreSection: React.FC<Props> = ({
   showProductPage,
   setShowProductPage,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedBook, setSelectedBook] = useState<any | null>(null);
-  const [livres, setLivres] = useState<any[]>([]);
+  const [books, setBooks] = useState<any[]>([]);
 
-  const filteredLivres =
-    selectedCategory === "Tous"
-      ? livres
-      : livres.filter((livre) => livre.genre === selectedCategory);
+  const filteredBooks =
+    selectedCategory === "All"
+      ? books
+      : books.filter((book) => book.genre === selectedCategory);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:3001"}/livres`)
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:3001"}/books`)
       .then((res) => res.json())
-      .then((data) => setLivres(data));
+      .then((data) => setBooks(data));
   }, []);
 
   return (
     <>
       {showProductPage ? (
         <ProductPage
-          livre={selectedBook || filteredLivres[0]}
+          book={selectedBook || filteredBooks[0]}
           setShowProductPage={setShowProductPage}
         />
       ) : (
@@ -41,12 +42,12 @@ export const ExploreSection: React.FC<Props> = ({
             setSelectedCategory={setSelectedCategory}
           />
           <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center">
-            {filteredLivres.map((livre, index) => (
+            {filteredBooks.map((book, index) => (
               <>
                 <button
                   onClick={() => {
                     setShowProductPage(true);
-                    setSelectedBook(livre);
+                    setSelectedBook(book);
                   }}
                   key={index}
                   className="bg-white rounded-xl p-4 shadow-sm flex flex-col justify-center items-center text-center m-2 hover:bg-slate-200 transition duration-300 ease-in-out"
@@ -57,7 +58,7 @@ export const ExploreSection: React.FC<Props> = ({
                     alt="Place Holder"
                   />
                   <p className="line-clamp-1">
-                    {livre.titre}, {livre.auteur}
+                    {book.title}, {book.author}
                   </p>
                 </button>
               </>

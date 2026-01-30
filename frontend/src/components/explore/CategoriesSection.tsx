@@ -19,11 +19,11 @@ export const CategoriesSection: React.FC<Props> = ({
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 items-stretch">
         <button
           className={`${
-            selectedCategory === "Tous"
+            selectedCategory === "All"
               ? "bg-[#8e80d9] text-slate-100"
               : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
-          onClick={() => setSelectedCategory("Tous")}
+          onClick={() => setSelectedCategory("All")}
         >
           <span>All</span>
         </button>
@@ -59,41 +59,41 @@ export const CategoriesSection: React.FC<Props> = ({
         </button>
         <button
           className={`${
-            selectedCategory === "Poésie"
+            selectedCategory === "Poetry"
               ? "bg-[#8e80d9] text-slate-100"
               : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
-          onClick={() => setSelectedCategory("Poésie")}
+          onClick={() => setSelectedCategory("Poetry")}
         >
           <span>Poetry</span>
         </button>
         <button
           className={`${
-            selectedCategory === "Bandes dessinées"
+            selectedCategory === "Comics"
               ? "bg-[#8e80d9] text-slate-100"
               : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
-          onClick={() => setSelectedCategory("Bandes dessinées")}
+          onClick={() => setSelectedCategory("Comics")}
         >
           <span>Comics</span>
         </button>
         <button
           className={`${
-            selectedCategory === "Cuisine"
+            selectedCategory === "Cooking"
               ? "bg-[#8e80d9] text-slate-100"
               : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
-          onClick={() => setSelectedCategory("Cuisine")}
+          onClick={() => setSelectedCategory("Cooking")}
         >
           <span>Cooking</span>
         </button>
         <button
           className={`${
-            selectedCategory === "Histoire"
+            selectedCategory === "History"
               ? "bg-[#8e80d9] text-slate-100"
               : "bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-slate-100"
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
-          onClick={() => setSelectedCategory("Histoire")}
+          onClick={() => setSelectedCategory("History")}
         >
           <span>History</span>
         </button>
