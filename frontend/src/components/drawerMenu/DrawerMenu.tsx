@@ -41,9 +41,9 @@ export const DrawerMenu: React.FC = () => {
             iconInactive={exploreInactiveSvg}
           />
         </Link>
-        <Link to={"/statistiques"} draggable={false}>
+        <Link to={"/statistics"} draggable={false}>
           <DrawerMenuButton
-            active={location.pathname === "/statistiques"}
+            active={location.pathname === "/statistics"}
             label="Statistics"
             iconActive={statistiquesActiveSvg}
             iconInactive={statistiquesInactiveSvg}
