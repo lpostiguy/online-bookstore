@@ -54,7 +54,7 @@ export const ExploreSection: React.FC<Props> = ({
                 >
                   <img
                     className="w-20"
-                    src={bookPlaceholder}
+                    src={book.imageUrl || bookPlaceholder}
                     alt="Place Holder"
                   />
                   <p className="line-clamp-1">

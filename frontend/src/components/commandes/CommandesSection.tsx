@@ -30,7 +30,7 @@ export const CommandesSection: React.FC = () => {
             <div className="space-y-4 pb-4 lg:pb-0">
               <img
                 className="w-20 mx-auto lg:mx-0"
-                src={bookPlaceholder}
+                src={order.book.imageUrl}
                 alt="Place Holder"
               />
               <p className="line-clamp-1 text-left">

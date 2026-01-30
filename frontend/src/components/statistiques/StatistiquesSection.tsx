@@ -96,7 +96,7 @@ export const StatistiquesSection: React.FC = () => {
               <div className="space-y-4 pb-4 lg:pb-0">
                 <img
                   className="w-20 mx-auto lg:mx-0"
-                  src={bookPlaceholder}
+                  src={order.book.imageUrl || bookPlaceholder}
                   alt="Book"
                 />
                 <p className="text-center lg:text-left">
@@ -127,7 +127,7 @@ export const StatistiquesSection: React.FC = () => {
               <div className="space-y-4 pb-4 lg:pb-0">
                 <img
                   className="w-20 mx-auto lg:mx-0"
-                  src={bookPlaceholder}
+                  src={loan.book.imageUrl || bookPlaceholder}
                   alt="Book"
                 />
                 <p className="text-left">
@@ -162,7 +162,7 @@ export const StatistiquesSection: React.FC = () => {
               <div className="space-y-4 pb-4 lg:pb-0">
                 <img
                   className="w-20 mx-auto lg:mx-0"
-                  src={bookPlaceholder}
+                  src={borrowCount.imageUrl || bookPlaceholder}
                   alt="Book"
                 />
                 <div className="space-y-1">

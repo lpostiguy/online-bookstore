@@ -84,7 +84,7 @@ export const ProductPage: React.FC<props> = ({ book, setShowProductPage }) => {
         <div className="bg-neutral-200 rounded-md flex justify-center items-center lg:w-1/2 h-64 lg:h-96">
           <img
             className="w-28 lg:w-32"
-            src={bookPlaceholder}
+            src={book.imageUrl || bookPlaceholder}
             alt="Place Holder"
           />
         </div>
