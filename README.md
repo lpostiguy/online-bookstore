@@ -3,7 +3,7 @@
 ## 🔗 Live Demo
 You can preview the project, hosted here: [online-bookstore.vercel.app](https://online-bookstore-jyzs.vercel.app/)
 
-<img width="3038" height="1626" alt="Online_book_store" src="https://github.com/user-attachments/assets/db6537e3-fd86-4bd3-80ca-c53862802197" />
+<img width="3038" height="1626" alt="Online_book_store" src="https://github.com/user-attachments/assets/48fe6235-6f30-4902-8194-fe4f291c2e87" />
 
 This project is a fullstack web application built with:
 
