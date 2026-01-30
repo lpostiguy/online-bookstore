@@ -11,7 +11,8 @@ export const StatistiquesSection: React.FC = () => {
   const [view, setView] = useState<string>("Commande");
 
   useEffect(() => {
-    fetch(`http://localhost:3001/commandes`)
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    fetch(`${API_URL}/commandes`)
       .then((res) => res.json())
       .then((data) => setCommandes(data));
   }, []);
