@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import bookPlaceholder from "../../assets/img/book.png";
 
 export const EmpruntsSection: React.FC = () => {
@@ -6,8 +7,9 @@ export const EmpruntsSection: React.FC = () => {
 
   useEffect(() => {
     const userId = 1;
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-    fetch(`http://localhost:3001/mes-emprunts?userId=${userId}`)
+    fetch(`${API_URL}/mes-emprunts?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => setEmprunts(data));
   }, []);
@@ -16,7 +18,7 @@ export const EmpruntsSection: React.FC = () => {
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-1/2 p-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
-          Mes emprunts
+          My Loans
         </h2>
       </div>
       <div className="mt-4">
@@ -37,12 +39,12 @@ export const EmpruntsSection: React.FC = () => {
             </div>
             <div className="space-y-4">
               <p className="line-clamp-1">
-                Date d'emprunt :{" "}
-                {new Date(emprunt.dateEmprunt).toLocaleDateString("fr-FR")}
+                Loan Date:{" "}
+                {new Date(emprunt.dateEmprunt).toLocaleDateString("en-US")}
               </p>
               <p className="line-clamp-1">
-                Date de retour :{" "}
-                {new Date(emprunt.dateRetour).toLocaleDateString("fr-FR")}
+                Return Date:{" "}
+                {new Date(emprunt.dateRetour).toLocaleDateString("en-US")}
               </p>
             </div>
           </div>

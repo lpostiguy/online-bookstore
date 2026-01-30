@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import profileSvg from "../assets/svg/profile.svg";
-import logo from "../assets/img/logo.png";
 import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+
 import { DrawerMenuButton } from "./drawerMenu/DrawerMenuButton";
+import logo from "../assets/img/logo.png";
+import profileSvg from "../assets/svg/profile.svg";
 
 export const Header: React.FC = () => {
   const [showProfileDropDown, setShowProfileDropDown] =
@@ -37,13 +38,13 @@ export const Header: React.FC = () => {
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
                 to="/emprunts"
               >
-                Mes Emprunts
+                My Loans
               </Link>
               <Link
                 className="w-full flex justify-center text-center p-2 bg-[#dbd8ed] hover:bg-[#b6aeec] hover:text-white"
                 to="/commandes"
               >
-                Mes Commandes
+                My Orders
               </Link>
             </div>
           )}
@@ -53,19 +54,19 @@ export const Header: React.FC = () => {
         <Link to={"/home"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/home"}
-            label="Accueil"
+            label="Home"
           />
         </Link>
         <Link to={"/explore"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/explore"}
-            label="Explorer"
+            label="Explore"
           />
         </Link>
         <Link to={"/statistiques"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/statistiques"}
-            label="Statistiques"
+            label="Statistics"
           />
         </Link>
       </div>

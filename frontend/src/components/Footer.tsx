@@ -7,24 +7,24 @@ export const Footer: React.FC = () => {
         <div className="text-center md:text-left">
           <h2 className="text-xl font-bold">BiblioTech</h2>
           <p className="text-sm mt-1">
-            La lecture à portée de clic. Explorez notre monde de savoirs.
+            Reading at your fingertips. Explore our world of knowledge.
           </p>
         </div>
 
         <div className="flex space-x-6 text-sm">
           <a href="" className="hover:text-blue-600 transition">
-            À propos
+            About
           </a>
           <a href="" className="hover:text-blue-600 transition">
             Contact
           </a>
           <a href="" className="hover:text-blue-600 transition">
-            Mentions légales
+            Legal Notice
           </a>
         </div>
       </div>
       <div className="text-center text-xs text-slate-500 mt-4">
-        © {new Date().getFullYear()} BiblioTech. Tous droits réservés.
+        © {new Date().getFullYear()} BiblioTech. All rights reserved.
       </div>
     </footer>
   );

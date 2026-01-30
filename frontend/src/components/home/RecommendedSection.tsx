@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import arrowSvg from "../../assets/svg/arrow.svg";
-import bookPlaceholder from "../../assets/img/book.png";
+
 import { Link } from "react-router-dom";
 import { ProductPage } from "../ProductPage";
+import arrowSvg from "../../assets/svg/arrow.svg";
+import bookPlaceholder from "../../assets/img/book.png";
 
 interface Props {
   showProductPage: boolean;
@@ -17,7 +18,9 @@ export const RecommendedSection: React.FC<Props> = ({
   const [livres, setLivres] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/stats/borrow-count-per-book`)
+    fetch(
+      `${process.env.REACT_APP_API_URL || "http://localhost:3001"}/stats/borrow-count-per-book`,
+    )
       .then((res) => res.json())
       .then((data) => setLivres(data));
   }, []);
@@ -33,13 +36,13 @@ export const RecommendedSection: React.FC<Props> = ({
         <div className="rounded-xl w-full lg:w-3/4 bg-slate-100 shadow-md h-auto lg:h-1/2 p-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold text-center md:text-left w-full md:w-auto">
-              Les plus populaires
+              Most Popular
             </h2>
             <Link
               className="bg-[#8e80d9] bg-opacity-90 py-2 px-4 rounded-xl text-slate-100 justify-between space-x-1 hover:bg-opacity-60 ease-in-out transition duration-300 hidden md:flex"
               to="/explore"
             >
-              <p>Voir plus</p>
+              <p>See more</p>
               <img src={arrowSvg} alt="Arrow" />
             </Link>
           </div>
@@ -66,7 +69,7 @@ export const RecommendedSection: React.FC<Props> = ({
             className="mt-6 flex justify-center items-center bg-[#8e80d9] bg-opacity-90 rounded-xl text-slate-100 space-x-1 hover:bg-opacity-60 transition duration-300 w-full py-3 md:hidden"
             to="/explore"
           >
-            <p>Voir plus</p>
+            <p>See more</p>
             <img src={arrowSvg} alt="Arrow" className="w-5 h-5 pt-1" />
           </Link>
         </div>

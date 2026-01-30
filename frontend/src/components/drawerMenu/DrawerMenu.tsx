@@ -1,13 +1,14 @@
-import React from "react";
-import logo from "../../assets/img/logo.png";
-import { DrawerMenuButton } from "./DrawerMenuButton";
-import homeInactiveSvg from "../../assets/svg/home-icon-inactive.svg";
-import homeActiveSvg from "../../assets/svg/home-icon-active.svg";
-import exploreInactiveSvg from "../../assets/svg/explore-inactive.svg";
-import exploreActiveSvg from "../../assets/svg/explore-active.svg";
-import statistiquesInactiveSvg from "../../assets/svg/statistiques-inactive.svg";
-import statistiquesActiveSvg from "../../assets/svg/statistiques-active.svg";
 import { Link, useLocation } from "react-router-dom";
+
+import { DrawerMenuButton } from "./DrawerMenuButton";
+import React from "react";
+import exploreActiveSvg from "../../assets/svg/explore-active.svg";
+import exploreInactiveSvg from "../../assets/svg/explore-inactive.svg";
+import homeActiveSvg from "../../assets/svg/home-icon-active.svg";
+import homeInactiveSvg from "../../assets/svg/home-icon-inactive.svg";
+import logo from "../../assets/img/logo.png";
+import statistiquesActiveSvg from "../../assets/svg/statistiques-active.svg";
+import statistiquesInactiveSvg from "../../assets/svg/statistiques-inactive.svg";
 
 export const DrawerMenu: React.FC = () => {
   const location = useLocation();
@@ -27,7 +28,7 @@ export const DrawerMenu: React.FC = () => {
         <Link to={"/home"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/home"}
-            label="Accueil"
+            label="Home"
             iconActive={homeActiveSvg}
             iconInactive={homeInactiveSvg}
           />
@@ -35,7 +36,7 @@ export const DrawerMenu: React.FC = () => {
         <Link to={"/explore"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/explore"}
-            label="Explorer"
+            label="Explore"
             iconActive={exploreActiveSvg}
             iconInactive={exploreInactiveSvg}
           />
@@ -43,7 +44,7 @@ export const DrawerMenu: React.FC = () => {
         <Link to={"/statistiques"} draggable={false}>
           <DrawerMenuButton
             active={location.pathname === "/statistiques"}
-            label="Statistiques"
+            label="Statistics"
             iconActive={statistiquesActiveSvg}
             iconInactive={statistiquesInactiveSvg}
           />

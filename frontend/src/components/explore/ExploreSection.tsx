@@ -22,7 +22,7 @@ export const ExploreSection: React.FC<Props> = ({
       : livres.filter((livre) => livre.genre === selectedCategory);
 
   useEffect(() => {
-    fetch("http://localhost:3001/livres")
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:3001"}/livres`)
       .then((res) => res.json())
       .then((data) => setLivres(data));
   }, []);

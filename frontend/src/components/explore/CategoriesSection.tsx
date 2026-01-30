@@ -13,7 +13,7 @@ export const CategoriesSection: React.FC<Props> = ({
     <div className="rounded-xl w-full bg-slate-100 shadow-md h-auto p-4 space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-center w-full md:w-auto md:text-left">
-          Catégories
+          Categories
         </h2>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 items-stretch">
@@ -25,7 +25,7 @@ export const CategoriesSection: React.FC<Props> = ({
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
           onClick={() => setSelectedCategory("Tous")}
         >
-          <span>Tous</span>
+          <span>All</span>
         </button>
         <button
           className={`${
@@ -65,7 +65,7 @@ export const CategoriesSection: React.FC<Props> = ({
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
           onClick={() => setSelectedCategory("Poésie")}
         >
-          <span>Poésie</span>
+          <span>Poetry</span>
         </button>
         <button
           className={`${
@@ -75,7 +75,7 @@ export const CategoriesSection: React.FC<Props> = ({
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
           onClick={() => setSelectedCategory("Bandes dessinées")}
         >
-          <span>Bandes dessinées</span>
+          <span>Comics</span>
         </button>
         <button
           className={`${
@@ -85,7 +85,7 @@ export const CategoriesSection: React.FC<Props> = ({
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
           onClick={() => setSelectedCategory("Cuisine")}
         >
-          <span>Cuisine</span>
+          <span>Cooking</span>
         </button>
         <button
           className={`${
@@ -95,7 +95,7 @@ export const CategoriesSection: React.FC<Props> = ({
           } rounded-xl bg-opacity-80 p-2 ease-in-out transition duration-300`}
           onClick={() => setSelectedCategory("Histoire")}
         >
-          <span>Histoire</span>
+          <span>History</span>
         </button>
       </div>
     </div>
